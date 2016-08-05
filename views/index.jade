@@ -1,5 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  #top-controls
+  #room-title Living Room
+  #wrapper
+
+    //h2 Living Room light on.
+      br 
+      |2 fans on.
+    h3 Scenes
+    #scenes-wrapper
+      #scenes
+        .action.scene 
+          .title Full Light
+        .action.scene 
+          .title Dim Lights
+        .action.scene 
+          .title Full Light
+        .action.scene 
+          .title Dim Lights
