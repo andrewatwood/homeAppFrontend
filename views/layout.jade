@@ -10,6 +10,11 @@ html
   body
     block content
     script.
+      var square = ($('#wrapper').width()-30)/3;
+      var gutter = $('#wrapper').width()*(5/345);
+      console.log('square calc as %s', square);
+      $('.action.accessory').width(square).height(square).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);
+      $('.action.scene').width(square*2+gutter*2).height(gutter*12).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);      
       $('.action').click(function(){
         $(this).toggleClass('inactive');
         if($(this).hasClass('inactive')){

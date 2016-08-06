@@ -31,8 +31,8 @@ body
 #wrapper
     position: absolute
     top: 70px
-    left: 20px
-    right: 20px
+    left: 15px
+    right: 15px
     bottom: 0
     padding-top: 90px
     .summary
@@ -45,10 +45,12 @@ body
 h2
     font-size: 1.5em
     margin: 0 0
+    margin-left: 5px
 
 h3
     font-size: 1em
     margin: 6px 0
+    margin-left: 5px
 
 #top-controls
     height: 30px
@@ -73,7 +75,8 @@ h3
 .action
     background: white
     border-radius: 10px
-    margin-right: 10px
+    margin-right: 5px
+    margin-left: 5px
     margin-bottom: 10px
     color: black
     display: inline-block
@@ -83,14 +86,6 @@ h3
         color: lighten(black,30%)
         .status
             color: lighten(black, 45%)
-
-.scene
-    width: 220px
-    height: 60px
-    font-size: 1.2em
-    line-height: 60px
-    .title
-        margin-left: 55px
 .accessory
     width: 105px
     height: 105px
@@ -101,3 +96,12 @@ h3
         margin-top: 50px
     .status
         color: lighten(black, 50%)
+    &:nth-child(3n+2)
+        margin-right: 0px
+.scene
+    width: 220px
+    height: 60px
+    font-size: 1.2em
+    line-height: 60px
+    .title
+        margin-left: 55px

@@ -33,6 +33,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/public\/images\/blank_square.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4112,
+		"inputAbbreviatedPath": "\/public\/images\/blank_square.png",
+		"outputAbbreviatedPath": "\/public\/images\/blank_square.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/images\/screenshot.png": {
 		"fileType": 32768,
 		"ignore": 0,

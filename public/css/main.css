@@ -29,8 +29,8 @@ body {
 #wrapper {
   position: absolute;
   top: 70px;
-  left: 20px;
-  right: 20px;
+  left: 15px;
+  right: 15px;
   bottom: 0;
   padding-top: 90px; }
   #wrapper .summary {
@@ -42,11 +42,13 @@ body {
 
 h2 {
   font-size: 1.5em;
-  margin: 0 0; }
+  margin: 0 0;
+  margin-left: 5px; }
 
 h3 {
   font-size: 1em;
-  margin: 6px 0; }
+  margin: 6px 0;
+  margin-left: 5px; }
 
 #top-controls {
   height: 30px;
@@ -72,7 +74,8 @@ h3 {
 .action {
   background: white;
   border-radius: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
   margin-bottom: 10px;
   color: black;
   display: inline-block;
@@ -82,14 +85,6 @@ h3 {
     color: #4d4d4d; }
     .action.inactive .status {
       color: #737373; }
-
-.scene {
-  width: 220px;
-  height: 60px;
-  font-size: 1.2em;
-  line-height: 60px; }
-  .scene .title {
-    margin-left: 55px; }
 
 .accessory {
   width: 105px;
@@ -101,3 +96,13 @@ h3 {
     margin-top: 50px; }
   .accessory .status {
     color: gray; }
+  .accessory:nth-child(3n+2) {
+    margin-right: 0px; }
+
+.scene {
+  width: 220px;
+  height: 60px;
+  font-size: 1.2em;
+  line-height: 60px; }
+  .scene .title {
+    margin-left: 55px; }
