@@ -1,5 +1,13 @@
+@font-face {
+  font-family: "San Fransisco";
+  src: url("/fonts/San Francisco Display Regular.ttf") format("truetype");
+  font-weight: normal; }
+@font-face {
+  font-family: "San Fransisco";
+  src: url("/fonts/San Francisco Display Bold.ttf") format("truetype");
+  font-weight: bold; }
 body {
-  font-family: "San Fransisco", "SFNS Display";
+  font-family: "San Fransisco";
   font-weight: bold;
   color: white;
   margin: 0 0 0 0;
@@ -12,7 +20,11 @@ body {
   height: 100%;
   background-color: green;
   background-size: cover;
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; }
 
 #wrapper {
   position: absolute;
@@ -63,7 +75,8 @@ h3 {
   margin-right: 10px;
   margin-bottom: 10px;
   color: black;
-  display: inline-block; }
+  display: inline-block;
+  transition: all 0.03s; }
   .action.inactive {
     background: rgba(255, 255, 255, 0.6);
     color: #4d4d4d; }
