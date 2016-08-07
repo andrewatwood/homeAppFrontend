@@ -26,9 +26,18 @@ body {
   -moz-user-select: none;
   -ms-user-select: none; }
 
-#wrapper {
+#scroll {
   position: absolute;
   top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+#wrapper {
+  position: absolute;
+  top: 0px;
   left: 15px;
   right: 15px;
   bottom: 0;
@@ -39,6 +48,8 @@ body {
 #room-title {
   font-size: 2.5em;
   margin: 15px 0 0 20px; }
+  #room-title.hidden {
+    display: none; }
 
 h2 {
   font-size: 1.5em;
@@ -52,10 +63,31 @@ h3 {
 
 #top-controls {
   height: 30px;
-  background-color: rgba(0, 0, 255, 0.2);
-  opacity: 50%;
   width: auto;
-  margin-top: 32px; }
+  opacity: 50%;
+  padding: 0 17px;
+  margin-top: 32px;
+  line-height: 30px; }
+  #top-controls .button {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-color: #A29A92;
+    border-radius: 15px;
+    margin: 0 12px 0 0; }
+    #top-controls .button.right {
+      margin: 0 0 0 12px;
+      float: right; }
+    #top-controls .button.edit {
+      width: 72px; }
+  #top-controls .room-title {
+    display: inline-block;
+    vertical-align: top;
+    min-width: 40px;
+    height: 30px;
+    line-height: 30px; }
+    #top-controls .room-title.hidden {
+      display: none; }
 
 #scenes-wrapper {
   margin-left: -20px;
@@ -64,14 +96,12 @@ h3 {
   max-height: 130px;
   overflow-y: hidden;
   overflow-x: auto;
-  margin-bottom: 25px;
-  -webkit-overflow-scrolling: touch; }
+  margin-bottom: 25px; }
 
 #scenes {
   width: 800px;
   padding-right: 60px;
-  max-height: 130px;
-  -webkit-overflow-scrolling: touch; }
+  max-height: 130px; }
 
 .action {
   background: white;

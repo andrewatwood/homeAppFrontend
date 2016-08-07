@@ -7,6 +7,7 @@
     src: url('/fonts/San Francisco Display Bold.ttf')  format('truetype')
     font-weight: bold
 
+$side-padding: 15px
 
 body
     font-family: 'San Fransisco'
@@ -28,11 +29,19 @@ body
     -webkit-user-select: none
     -moz-user-select: none      /* Firefox */
     -ms-user-select: none
-#wrapper
+#scroll
     position: absolute
     top: 70px
-    left: 15px
-    right: 15px
+    left: 0
+    right: 0
+    bottom: 0
+    overflow-y: scroll
+    overflow-x: hidden
+#wrapper
+    position: absolute
+    top: 0px
+    left: $side-padding
+    right: $side-padding
     bottom: 0
     padding-top: 90px
     .summary
@@ -41,6 +50,8 @@ body
 #room-title
     font-size: 2.5em
     margin: 15px 0 0 20px
+    &.hidden
+        display: none
 
 h2
     font-size: 1.5em
@@ -54,10 +65,31 @@ h3
 
 #top-controls
     height: 30px
-    background-color: rgba(blue, 0.2)
-    opacity: 50%
     width: auto
+    opacity: 50%
+    padding: 0 $side-padding + 2
     margin-top: 32px
+    line-height: 30px
+    .button
+        display: inline-block
+        height: 30px
+        width: 30px
+        background-color: #A29A92
+        border-radius: 15px
+        margin: 0 12px 0 0
+        &.right
+            margin: 0 0 0 12px
+            float: right
+        &.edit
+            width: 72px
+    .room-title
+        display: inline-block
+        vertical-align: top
+        min-width: 40px
+        height: 30px
+        line-height: 30px
+        &.hidden
+            display: none
 
 #scenes-wrapper
     margin-left: -20px
@@ -67,13 +99,11 @@ h3
     overflow-y: hidden
     overflow-x: auto
     margin-bottom: 25px
-    -webkit-overflow-scrolling: touch
     
 #scenes
     width: 800px
     padding-right: 60px
     max-height: 130px
-    -webkit-overflow-scrolling: touch
 
 .action
     background: white

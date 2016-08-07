@@ -2,47 +2,83 @@ extends layout
 
 block content
   #top-controls
+    .button
+    .room-title.hidden Living Room
+    .button.right.edit
+    .button.right
   #room-title Living Room
-  #wrapper
+  #scroll
+    #wrapper
+      //h2 Living Room light on.
+        br 
+        |2 fans on.
+      h3 Scenes
+      #scenes-wrapper
+        #scenes
+          .action.scene
+            .title Full Light
+          .action.scene.inactive 
+            .title Dim Lights
+          .action.scene.inactive
+            .title Kitchen Ready
+          .action.scene.inactive 
+            .title Bathroom Off
+          .action.scene.inactive
+            .title Outside Lights
+          .action.scene.inactive 
+            .title Music
+          .action.scene.inactive
+            .title Good Night
+          .action.scene.inactive 
+            .title Good Morning
 
-    //h2 Living Room light on.
-      br 
-      |2 fans on.
-    h3 Scenes
-    #scenes-wrapper
-      #scenes
-        .action.scene
-          .title Full Light
-        .action.scene.inactive 
-          .title Dim Lights
-        .action.scene.inactive
-          .title Kitchen Ready
-        .action.scene.inactive 
-          .title Bathroom Off
-        .action.scene.inactive
-          .title Outside Lights
-        .action.scene.inactive 
-          .title Music
-        .action.scene.inactive
-          .title Good Night
-        .action.scene.inactive 
-          .title Good Morning
-
-    h3 Accessories
-    #accessories
-      .action.accessory
-        .room Bedroom
-        .name Floor Lamp
-        .status On
-      .action.accessory.inactive
-        .room Bedroom
-        .name Wall Lamp
-        .status Off
-      .action.accessory.inactive
-        .room Living Room
-        .name Wall Lamp
-        .status Off
-      .action.accessory.inactive
-        .room Bathroom
-        .name Fart Fan
-        .status Off
+      h3 Accessories
+      #accessories
+        .action.accessory
+          .room Bedroom
+          .name Floor Lamp
+          .status On
+        .action.accessory.inactive
+          .room Bedroom
+          .name Wall Lamp
+          .status Off
+        .action.accessory.inactive
+          .room Living Room
+          .name Wall Lamp
+          .status Off
+        .action.accessory.inactive
+          .room Bathroom
+          .name Fart Fan
+          .status Off
+        .action.accessory
+          .room Bedroom
+          .name Floor Lamp
+          .status On
+        .action.accessory.inactive
+          .room Bedroom
+          .name Wall Lamp
+          .status Off
+        .action.accessory.inactive
+          .room Living Room
+          .name Wall Lamp
+          .status Off
+        .action.accessory.inactive
+          .room Bathroom
+          .name Fart Fan
+          .status Off
+        .action.accessory
+          .room Bedroom
+          .name Floor Lamp
+          .status On
+        .action.accessory.inactive
+          .room Bedroom
+          .name Wall Lamp
+          .status Off
+        .action.accessory.inactive
+          .room Living Room
+          .name Wall Lamp
+          .status Off
+        .action.accessory.inactive
+          .room Bathroom
+          .name Fart Fan
+          .status Off
