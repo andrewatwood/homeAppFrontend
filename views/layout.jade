@@ -9,12 +9,14 @@ html
     link(rel='stylesheet', href='/css/main.css')
   body
     block content
+    script(src='javascripts/scrollsnap.polyfill.bundled.js')
     script.
       var square = ($('#wrapper').width()-30)/3;
       var gutter = $('#wrapper').width()*(5/345);
-      console.log('square calc as %s', square);
+      var snapScene = 'repeat(' + (square*2+gutter*4) + 'px)';
       $('.action.accessory').width(square).height(square).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);
       $('.action.scene').width(square*2+gutter*2).height(gutter*12).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);      
+      $('#scenes-wrapper').css('scroll-snap-points-x',snapScene);
       $('.action').click(function(){
         $(this).toggleClass('inactive');
         if($(this).hasClass('inactive')){

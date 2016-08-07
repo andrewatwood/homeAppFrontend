@@ -65,12 +65,15 @@ h3
     width: 120vw
     max-height: 130px
     overflow-y: hidden
-    overflow-x: scroll
+    overflow-x: auto
     margin-bottom: 25px
+    -webkit-overflow-scrolling: touch
+    
 #scenes
-    width: 500px
+    width: 800px
     padding-right: 60px
     max-height: 130px
+    -webkit-overflow-scrolling: touch
 
 .action
     background: white
@@ -86,6 +89,7 @@ h3
         color: lighten(black,30%)
         .status
             color: lighten(black, 45%)
+
 .accessory
     width: 105px
     height: 105px
@@ -103,5 +107,6 @@ h3
     height: 60px
     font-size: 1.2em
     line-height: 60px
+    -webkit-scroll-snap-coordinate: 0% 0%
     .title
         margin-left: 55px
