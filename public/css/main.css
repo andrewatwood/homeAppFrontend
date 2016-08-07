@@ -47,9 +47,14 @@ body {
 
 #room-title {
   font-size: 2.5em;
-  margin: 15px 0 0 20px; }
+  margin: 15px 0 0 20px;
+  transition: all 0.4s;
+  opacity: 1;
+  position: relative;
+  top: 0; }
   #room-title.hidden {
-    display: none; }
+    opacity: 0;
+    top: -3px; }
 
 h2 {
   font-size: 1.5em;
@@ -85,9 +90,14 @@ h3 {
     vertical-align: top;
     min-width: 40px;
     height: 30px;
-    line-height: 30px; }
+    line-height: 30px;
+    transition: all 0.4s;
+    opacity: 1;
+    position: relative;
+    top: 0; }
     #top-controls .room-title.hidden {
-      display: none; }
+      opacity: 0;
+      top: 3px; }
 
 #scenes-wrapper {
   margin-left: -20px;
