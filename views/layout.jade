@@ -16,6 +16,7 @@ html
       var snapScene = 'repeat(' + (square*2+gutter*4) + 'px)';
       var bigTitle = $('#room-title');
       var littleTitle = $('#top-controls .room-title');
+      var scrollWrapper = $('#scroll');
       var scrollThreshold = 25
       var titleHidden = false;
       $('.action.accessory').width(square).height(square).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);
@@ -38,12 +39,14 @@ html
             titleHidden = true;
             bigTitle.toggleClass('hidden');
             littleTitle.toggleClass('hidden');
+            scrollWrapper.toggleClass('border');
           }
         } else {
           if(titleHidden){
             titleHidden = false;
             bigTitle.toggleClass('hidden');
             littleTitle.toggleClass('hidden');
+            scrollWrapper.toggleClass('border');
           }
         }
       })
