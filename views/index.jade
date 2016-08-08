@@ -34,7 +34,7 @@ block content
 
       h3 Accessories
       #accessories
-        .action.accessory(v-for='device in devices', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+        .action.accessory(v-for='device in server.devices', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
           .room {{device.location}}
           .name {{device.name}}
           .status {{device.on ? 'On' : 'Off'}}

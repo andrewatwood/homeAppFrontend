@@ -1,10 +1,12 @@
 function Domoticz(server){
     this.server = server;
     this.rooms = {};
+    this.devices = {};
+    this.init();
 }
 
 Domoticz.prototype.init = function(){
-    return this.getRooms();
+    return this.getRooms().then(this.getDevices())
 }
 
 Domoticz.prototype.getRooms = function(){
@@ -22,42 +24,83 @@ Domoticz.prototype.getRooms = function(){
                 var result = data.result[i];
                 rooms[result.idx] = result.Name;
             }
-            console.log(rooms);
             this.rooms = rooms;
-            console.log(this.rooms);
+            console.log(this);
             deferred.resolve();
             return true;
-        }
-    )
+        }.bind(this)
+    );
     return deferred;
 }
 
-var domoticz = new Domoticz('http://localhost:8080');
-domoticz.init().then(function(){
-    console.log(domoticz);
-});
+Domoticz.prototype.getDevices = function(){
+    var deferred = $.Deferred();
+    var url = this.server + '/json.htm?type=devices&filter=all&used=true&order=Name';
+    var devices = {};
+    $.get(
+        url,
+        function(data){
+            if(data.status != 'OK'){
+                deferred.reject();
+                return null;
+            }
+            for( var i = 0; i < data.result.length; i++){
+                var result = data.result[i];
+                var device = {};
+                device.name = result.Name;
+                device.idx = result.idx;
+                device.status = result.Status;
+                device.location = this.rooms[result.PlanID]
+                if (device.status != 'Off'){
+                    device.on = true;
+                } else {
+                    device.on = false;
+                }
+                devices[result.ID] = device;
+            }
+            this.devices = devices;
+            console.log(this);
+            deferred.resolve();
+            return true;
+        }.bind(this)
+    );
+    return deferred;
+}
 
-new Vue({
+Domoticz.prototype.toggleDevice = function(deviceId){
+    this.devices[deviceId].on = !this.devices[deviceId].on;
+    this.sendCommand({
+        on : this.devices[deviceId].on
+    }, deviceId
+    );
+}
+
+Domoticz.prototype.sendCommand = function(command, deviceId){
+    if('on' in command){
+        var cmd = command.on ? 'On' : 'Off';
+        var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + this.devices[deviceId].idx + '&switchcmd=' + cmd;
+    } else if ('brightness' in command){
+
+    }
+    if(url){
+        console.log(url);
+        $.get(
+            url,
+            function(data){
+                console.log(data);
+            }
+        );
+    }
+}
+
+var app = new Vue({
     el: '#app',
     data: {
-        state : {},
-        devices : {
-            '1' : {
-                name : 'Lamp',
-                location : 'Bedroom',
-                on : true
-            },
-            '2' : {
-                name : 'Fan',
-                location : 'Bedroom',
-                on : false
-            }
-        },
-        rooms : []
+        server : new Domoticz('http://localhost:8080')
     },
     methods: {
         toggleDevice : function(deviceId) {
-            this.devices[deviceId].on = !this.devices[deviceId].on;
+            this.server.toggleDevice(deviceId);
         }
     }
 });
