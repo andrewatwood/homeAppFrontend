@@ -4,15 +4,16 @@ html
     base(href="/")
     meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
     meta(name='apple-mobile-web-app-capable', content='yes')
+    script(src='javascripts/vue.js')
     script(src='javascripts/jquery-3.1.0.min.js')
     title Home Mockup
     link(rel='stylesheet', href='/css/main.css')
-  body
+  body#app
     block content
-    script(src='javascripts/scrollsnap-polyfill.bundled.js')
+    script(src='javascripts/app.js')
     script.
-      var square = ($('#wrapper').width()-30)/3;
-      var gutter = $('#wrapper').width()*(5/345);
+      var square = Math.floor(($('#wrapper').width()-30)/3);
+      var gutter = Math.floor($('#wrapper').width()*(5/345));
       var snapScene = 'repeat(' + (square*2+gutter*4) + 'px)';
       var bigTitle = $('#room-title');
       var littleTitle = $('#top-controls .room-title');
@@ -22,16 +23,6 @@ html
       $('.action.accessory').width(square).height(square).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);
       $('.action.scene').width(square*2+gutter*2).height(gutter*12).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);      
       $('#scenes-wrapper').css('scroll-snap-points-x',snapScene);
-      $('.action').click(function(){
-        $(this).toggleClass('inactive');
-        if($(this).hasClass('inactive')){
-          console.log('Inactive');
-          $(this).children('.status').text('Off');
-        } else {
-          console.log('Active');
-          $(this).children('.status').text('On');
-        }
-      });
       $('#scroll').scroll(function(){
         var current = $('#scroll').scrollTop();
         if(current > scrollThreshold){

@@ -44,6 +44,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/public\/images\/dog.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1.86963e+06,
+		"inputAbbreviatedPath": "\/public\/images\/dog.jpg",
+		"outputAbbreviatedPath": "\/public\/images\/dog.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/images\/dog.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1.20279e+07,
+		"inputAbbreviatedPath": "\/public\/images\/dog.png",
+		"outputAbbreviatedPath": "\/public\/images\/dog.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/images\/screenshot.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -55,10 +77,21 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/public\/javascripts\/app.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/public\/javascripts\/app.js",
+		"outputAbbreviatedPath": "\/public\/javascripts\/min\/app-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 0
+		},
 	"\/public\/javascripts\/jquery-3.1.0.min.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/public\/javascripts\/jquery-3.1.0.min.js",
 		"outputAbbreviatedPath": "\/public\/javascripts\/min\/jquery-3.1.0.min-min.js",
 		"outputPathIsOutsideProject": 0,
@@ -68,10 +101,21 @@
 		},
 	"\/public\/javascripts\/scrollsnap-polyfill.bundled.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/public\/javascripts\/scrollsnap-polyfill.bundled.js",
 		"outputAbbreviatedPath": "\/public\/javascripts\/min\/scrollsnap-polyfill.bundled-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/javascripts\/vue.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/public\/javascripts\/vue.js",
+		"outputAbbreviatedPath": "\/public\/javascripts\/min\/vue-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -104,25 +148,25 @@
 		},
 	"\/routes\/index.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/routes\/index.js",
 		"outputAbbreviatedPath": "\/routes\/min\/index-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
+		"syntaxCheckerStyle": 0
 		},
 	"\/routes\/users.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/routes\/users.js",
 		"outputAbbreviatedPath": "\/routes\/min\/users-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
+		"syntaxCheckerStyle": 0
 		},
 	"\/views\/error.jade": {
 		"compileDebug": 1,

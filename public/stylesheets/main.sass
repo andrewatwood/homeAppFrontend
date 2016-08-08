@@ -9,7 +9,7 @@
 
 $side-padding: 15px
 $room-transition: 0.25s
-$room-transition-shift: 2px
+$room-transition-shift: 4px
 
 body
     font-family: 'San Fransisco'
@@ -24,6 +24,9 @@ body
     width: 100%
     height: 100%
     //background: url('/images/screenshot.png')
+    background: url('/images/dog.png')
+    background-repeat:   no-repeat
+    background-position: center center
     background-color: green
     background-size: cover
     background-attachment: fixed
@@ -82,10 +85,11 @@ h3
     margin-top: 32px
     line-height: 30px
     .button
+        -webkit-backdrop-filter: blur(20px)
         display: inline-block
         height: 30px
         width: 30px
-        background-color: #A29A92
+        background: rgba(white,0.6)
         border-radius: 15px
         margin: 0 12px 0 0
         &.right
@@ -131,6 +135,7 @@ h3
     display: inline-block
     transition: all 0.03s
     &.inactive
+        -webkit-backdrop-filter: blur(20px)
         background: rgba(white,0.6)
         color: lighten(black,30%)
         .status

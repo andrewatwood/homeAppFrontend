@@ -18,6 +18,9 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
+  background: url("/images/dog.png");
+  background-repeat: no-repeat;
+  background-position: center center;
   background-color: green;
   background-size: cover;
   background-attachment: fixed;
@@ -57,7 +60,7 @@ body {
   top: 0; }
   #room-title.hidden {
     opacity: 0;
-    top: -2px; }
+    top: -4px; }
 
 h2 {
   font-size: 1.5em;
@@ -77,10 +80,11 @@ h3 {
   margin-top: 32px;
   line-height: 30px; }
   #top-controls .button {
+    -webkit-backdrop-filter: blur(20px);
     display: inline-block;
     height: 30px;
     width: 30px;
-    background-color: #A29A92;
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 15px;
     margin: 0 12px 0 0; }
     #top-controls .button.right {
@@ -100,7 +104,7 @@ h3 {
     top: 0; }
     #top-controls .room-title.hidden {
       opacity: 0;
-      top: 2px; }
+      top: 4px; }
 
 #scenes-wrapper {
   margin-left: -20px;
@@ -126,6 +130,7 @@ h3 {
   display: inline-block;
   transition: all 0.03s; }
   .action.inactive {
+    -webkit-backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.6);
     color: #4d4d4d; }
     .action.inactive .status {

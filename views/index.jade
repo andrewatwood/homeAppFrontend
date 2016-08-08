@@ -4,8 +4,8 @@ block content
   #top-controls
     .button
     .room-title.hidden Living Room
-    .button.right.edit
     .button.right
+    .button.right.edit
   #room-title Living Room
   #scroll
     #wrapper
@@ -34,51 +34,7 @@ block content
 
       h3 Accessories
       #accessories
-        .action.accessory
-          .room Bedroom
-          .name Floor Lamp
-          .status On
-        .action.accessory.inactive
-          .room Bedroom
-          .name Wall Lamp
-          .status Off
-        .action.accessory.inactive
-          .room Living Room
-          .name Wall Lamp
-          .status Off
-        .action.accessory.inactive
-          .room Bathroom
-          .name Fart Fan
-          .status Off
-        .action.accessory
-          .room Bedroom
-          .name Floor Lamp
-          .status On
-        .action.accessory.inactive
-          .room Bedroom
-          .name Wall Lamp
-          .status Off
-        .action.accessory.inactive
-          .room Living Room
-          .name Wall Lamp
-          .status Off
-        .action.accessory.inactive
-          .room Bathroom
-          .name Fart Fan
-          .status Off
-        .action.accessory
-          .room Bedroom
-          .name Floor Lamp
-          .status On
-        .action.accessory.inactive
-          .room Bedroom
-          .name Wall Lamp
-          .status Off
-        .action.accessory.inactive
-          .room Living Room
-          .name Wall Lamp
-          .status Off
-        .action.accessory.inactive
-          .room Bathroom
-          .name Fart Fan
-          .status Off
+        .action.accessory(v-for='device in devices', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+          .room {{device.location}}
+          .name {{device.name}}
+          .status {{device.on ? 'On' : 'Off'}}
