@@ -18,6 +18,7 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
+  overflow-x: scroll;
   background: url("/images/dog.png");
   background-repeat: no-repeat;
   background-position: center center;
@@ -29,7 +30,12 @@ body {
   -moz-user-select: none;
   -ms-user-select: none; }
 
-#scroll {
+.room-wrapper {
+  width: 100%;
+  height: 100%;
+  padding-top: 32px; }
+
+.scroll {
   position: absolute;
   top: 70px;
   left: 0;
@@ -38,27 +44,27 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   border-top: 0px solid; }
-  #scroll.border {
+  .scroll.border {
     border-top: 1px solid #A29A92; }
 
-#wrapper {
+.wrapper {
   position: absolute;
   top: 0px;
   left: 15px;
   right: 15px;
   bottom: 0;
   padding-top: 90px; }
-  #wrapper .summary {
+  .wrapper .summary {
     padding-top: 80px; }
 
-#room-title {
+.room-title {
   font-size: 2.5em;
   margin: 15px 0 0 20px;
   transition: all 0.25s;
   opacity: 1;
   position: relative;
   top: 0; }
-  #room-title.hidden {
+  .room-title.hidden {
     opacity: 0;
     top: -4px; }
 
@@ -72,14 +78,13 @@ h3 {
   margin: 6px 0;
   margin-left: 5px; }
 
-#top-controls {
+.top-controls {
   height: 30px;
   width: auto;
   opacity: 50%;
   padding: 0 17px;
-  margin-top: 32px;
   line-height: 30px; }
-  #top-controls .button {
+  .top-controls .button {
     -webkit-backdrop-filter: blur(20px);
     display: inline-block;
     height: 30px;
@@ -87,12 +92,12 @@ h3 {
     background: rgba(255, 255, 255, 0.6);
     border-radius: 15px;
     margin: 0 12px 0 0; }
-    #top-controls .button.right {
+    .top-controls .button.right {
       margin: 0 0 0 12px;
       float: right; }
-    #top-controls .button.edit {
+    .top-controls .button.edit {
       width: 72px; }
-  #top-controls .room-title {
+  .top-controls .room-title-small {
     display: inline-block;
     vertical-align: top;
     min-width: 40px;
@@ -102,11 +107,11 @@ h3 {
     opacity: 1;
     position: relative;
     top: 0; }
-    #top-controls .room-title.hidden {
+    .top-controls .room-title-small.hidden {
       opacity: 0;
       top: 4px; }
 
-#scenes-wrapper {
+.scenes-wrapper {
   margin-left: -20px;
   padding-left: 20px;
   width: 120vw;
@@ -115,7 +120,7 @@ h3 {
   overflow-x: auto;
   margin-bottom: 25px; }
 
-#scenes {
+.scenes {
   width: 800px;
   padding-right: 60px;
   max-height: 130px; }

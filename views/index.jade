@@ -1,40 +1,40 @@
 extends layout
 
 block content
-  #top-controls
-    .button
-    .room-title.hidden Living Room
-    .button.right
-    .button.right.edit
-  #room-title Living Room
-  #scroll
-    #wrapper
-      //h2 Living Room light on.
-        br 
-        |2 fans on.
-      h3 Scenes
-      #scenes-wrapper
-        #scenes
-          .action.scene
-            .title Full Light
-          .action.scene.inactive 
-            .title Dim Lights
-          .action.scene.inactive
-            .title Kitchen Ready
-          .action.scene.inactive 
-            .title Bathroom Off
-          .action.scene.inactive
-            .title Outside Lights
-          .action.scene.inactive 
-            .title Music
-          .action.scene.inactive
-            .title Good Night
-          .action.scene.inactive 
-            .title Good Morning
-
-      h3 Accessories
-      #accessories
-        .action.accessory(v-for='device in server.devices', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
-          .room {{device.location}}
-          .name {{device.name}}
-          .status {{device.on ? 'On' : 'Off'}}
+  .room-wrapper
+    .top-controls
+      .button
+      .room-title-small.hidden Living Room
+      .button.right
+      .button.right.edit
+    .room-title Living Room
+    .scroll
+      .wrapper
+        //h2 Living Room light on.
+          br 
+          |2 fans on.
+        h3 Scenes
+        .scenes-wrapper
+          .scenes
+            .action.scene
+              .title Full Light
+            .action.scene.inactive 
+              .title Dim Lights
+            .action.scene.inactive
+              .title Kitchen Ready
+            .action.scene.inactive 
+              .title Bathroom Off
+            .action.scene.inactive
+              .title Outside Lights
+            .action.scene.inactive 
+              .title Music
+            .action.scene.inactive
+              .title Good Night
+            .action.scene.inactive 
+              .title Good Morning
+        h3 Accessories
+        .accessories
+          .action.accessory(v-for='device in server.devices', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .room {{rooms[device.location]}}
+            .name {{device.name}}
+            .status {{device.on ? 'On' : 'Off'}}
