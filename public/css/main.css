@@ -16,10 +16,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
   overflow-x: scroll;
-  background: url("/images/dog.png");
+  overflow-y: hidden;
   background-repeat: no-repeat;
   background-position: center center;
   background-color: green;
@@ -28,12 +26,30 @@ body {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none; }
+  -ms-user-select: none;
+  -webkit-scroll-snap-type: mandatory;
+  -webkit-scroll-snap-points-x: repeat(100%); }
+
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-scroll-snap-type: mandatory;
+  -webkit-scroll-snap-points-x: repeat(100%); }
 
 .room-wrapper {
   width: 100%;
   height: 100%;
-  padding-top: 32px; }
+  padding-top: 32px;
+  position: relative;
+  display: inline-block;
+  border: 1px solid blue;
+  margin: 0; }
 
 .scroll {
   position: absolute;
@@ -115,7 +131,7 @@ h3 {
   margin-left: -20px;
   padding-left: 20px;
   width: 120vw;
-  max-height: 130px;
+  max-height: 200px;
   overflow-y: hidden;
   overflow-x: auto;
   margin-bottom: 25px; }
@@ -123,7 +139,8 @@ h3 {
 .scenes {
   width: 800px;
   padding-right: 60px;
-  max-height: 130px; }
+  max-height: 130px;
+  white-space: default; }
 
 .action {
   background: white;

@@ -50,6 +50,7 @@ Domoticz.prototype.getDevices = function(){
                 device.name = result.Name;
                 device.idx = result.idx;
                 device.status = result.Status;
+                device.locationId = result.PlanID;
                 device.location = this.rooms[result.PlanID]
                 if (device.status != 'Off'){
                     device.on = true;
@@ -96,11 +97,19 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
 var app = new Vue({
     el: '#app',
     data: {
-        server : new Domoticz('http://localhost:8080')
+        server : new Domoticz('http://localhost:8080'),
+        showRoomPicker : false,
+        room : 2
     },
     methods: {
         toggleDevice : function(deviceId) {
             this.server.toggleDevice(deviceId);
+        },
+        setRoom : function(roomId) {
+            this.room = roomId;
+        },
+        toggleRoomPicker : function() {
+            this.showRoomPicker = !this.showRoomPicker;
         }
     }
 });

@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  .room-wrapper
+  .room-wrapper(v-for='(id, room) in server.rooms')
     .top-controls
-      .button
-      .room-title-small.hidden Living Room
+      .button(v-on:click='toggleRoomPicker()')
+      .room-title-small.hidden {{room}}
       .button.right
       .button.right.edit
-    .room-title Living Room
+    .room-title {{room}}
     .scroll
       .wrapper
         //h2 Living Room light on.
@@ -34,7 +34,10 @@ block content
               .title Good Morning
         h3 Accessories
         .accessories
-          .action.accessory(v-for='device in server.devices', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
-            .room {{rooms[device.location]}}
+          .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .room {{device.location}}
             .name {{device.name}}
             .status {{device.on ? 'On' : 'Off'}}
+      .room-picker(v-if='showRoomPicker')
+        li(v-for='(id, room) in server.rooms')
+          a(v-on:click="setRoom(id)") {{room}}
