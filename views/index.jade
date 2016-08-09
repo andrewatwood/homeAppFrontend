@@ -1,11 +1,6 @@
 extends layout
 
 block content
-  #options(v-bind:class='{"hidden" : !showRoomPicker}')
-    .menu-wrapper
-      .menu
-        .option(v-for='(id, room) in server.rooms') {{room.name}}
-        .option.cancel(v-on:click='toggleRoomPicker()') Cancel
   .room-wrapper(v-for='(id, room) in server.rooms', room='{{room.name}}')
     .top-controls
       .button(v-on:click='toggleRoomPicker()')
@@ -13,7 +8,7 @@ block content
       .button.right
       .button.right.edit
     .room-title {{room.name}}
-    .scroll(room='{{room.name}}')
+    .scroll
       .wrapper
         //h2 Living Room light on.
           br 

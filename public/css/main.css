@@ -315,6 +315,10 @@ h3 {
         border-bottom: 1px solid #bfbfbf;
         color: #A60000;
         font-weight: normal; }
+        #options .menu-wrapper .menu .option .select {
+          position: absolute;
+          display: inline-block;
+          right: 25px; }
         #options .menu-wrapper .menu .option:hover {
           background-color: rgba(230, 230, 230, 0.9); }
         #options .menu-wrapper .menu .option.cancel {

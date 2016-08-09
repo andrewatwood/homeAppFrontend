@@ -148,14 +148,22 @@ var app = new Vue({
     data: {
         server : new Domoticz('http://andrews-macbook-pro.local:8080'),
         showRoomPicker : false,
-        room : 2
+        currentRoom : 2
     },
     methods: {
         toggleDevice : function(deviceId) {
             this.server.toggleDevice(deviceId);
         },
         setRoom : function(roomId) {
-            this.room = roomId;
+            this.currentRoom = roomId;
+            var room = '[room="' + this.server.rooms[roomId].name + '"]';
+            this.showRoomPicker = false;
+            var width = $('.scroll').width();
+            var current = $('#container').scrollLeft();
+            var offset = $(room).offset().left;
+            console.log('Target offset: %d current position: %d', offset, current);
+            var screens = Math.abs(offset)/width;
+            $('#container').animate({scrollLeft : current+offset},125*screens);
         },
         toggleRoomPicker : function() {
             this.showRoomPicker = !this.showRoomPicker;

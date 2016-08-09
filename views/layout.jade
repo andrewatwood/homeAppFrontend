@@ -9,7 +9,14 @@ html
     script(src='javascripts/responsive.js')
     title Home Mockup
     link(rel='stylesheet', href='/css/main.css')
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
   body#app
+    #options(v-bind:class='{"hidden" : !showRoomPicker}')
+      .menu-wrapper
+        .menu
+          .option(v-for='(id, room) in server.rooms', v-on:click='setRoom(id)') {{room.name}}
+            .select(v-show='currentRoom == id') <i class="fa fa-check"></i> 
+          .option.cancel(v-on:click='toggleRoomPicker()') Cancel
     #container
       block content
     script(src='javascripts/app.js')
