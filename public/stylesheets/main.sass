@@ -169,19 +169,23 @@ h3
             color: lighten(black, 45%)
 
 .accessory
-    width: 105px
-    height: 105px
+    width: 105/345 * (100%) //105px
+    padding-bottom: 105/345 * (100%)
+    //height: 105px
     font-size: 0.85em
-    .room, .name, .status
-        margin-left: 10px
-        margin-right: 10px
-        @include truncate
-    .room
-        margin-top: 50px
-    .status
-        color: lighten(black, 50%)
-    &:nth-child(3n+2)
-        margin-right: 0px
+    position: relative
+    .label
+        position: absolute
+        bottom: 10px
+        max-width: 100%
+        .room, .name, .status
+            margin-left: 10px
+            margin-right: 10px
+            @include truncate
+        .room
+            margin-top: 50px
+        .status
+            color: lighten(black, 50%)
 .scene
     width: 220px
     height: 60px

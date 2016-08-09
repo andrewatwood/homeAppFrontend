@@ -35,9 +35,10 @@ block content
         h3 Accessories
         .accessories
           .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
-            .room {{device.location}}
-            .name {{device.name}}
-            .status {{device.on ? 'On' : 'Off'}}
+            .label
+              .room {{device.location}}
+              .name {{device.name}}
+              .status {{device.on ? 'On' : 'Off'}}
       .room-picker(v-if='showRoomPicker')
         li(v-for='(id, room) in server.rooms')
           a(v-on:click="setRoom(id)") {{room}}

@@ -158,21 +158,24 @@ h3 {
       color: #737373; }
 
 .accessory {
-  width: 105px;
-  height: 105px;
-  font-size: 0.85em; }
-  .accessory .room, .accessory .name, .accessory .status {
-    margin-left: 10px;
-    margin-right: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; }
-  .accessory .room {
-    margin-top: 50px; }
-  .accessory .status {
-    color: gray; }
-  .accessory:nth-child(3n+2) {
-    margin-right: 0px; }
+  width: 30.4347826087%;
+  padding-bottom: 30.4347826087%;
+  font-size: 0.85em;
+  position: relative; }
+  .accessory .label {
+    position: absolute;
+    bottom: 10px;
+    max-width: 100%; }
+    .accessory .label .room, .accessory .label .name, .accessory .label .status {
+      margin-left: 10px;
+      margin-right: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .accessory .label .room {
+      margin-top: 50px; }
+    .accessory .label .status {
+      color: gray; }
 
 .scene {
   width: 220px;
