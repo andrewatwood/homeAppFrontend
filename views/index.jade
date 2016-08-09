@@ -26,12 +26,6 @@ block content
               .title Bathroom Off
             .action.scene.inactive
               .title Outside Lights
-            .action.scene.inactive 
-              .title Music
-            .action.scene.inactive
-              .title Good Night
-            .action.scene.inactive 
-              .title Good Morning
         h3 Accessories
         .accessories
           .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")

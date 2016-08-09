@@ -36,11 +36,7 @@ body
     background-size: cover
     background-attachment: fixed
     -webkit-touch-callout: none /* iOS Safari */
-    -webkit-user-select: none
-    -moz-user-select: none      /* Firefox */
-    -ms-user-select: none
-    -webkit-scroll-snap-type: mandatory
-    -webkit-scroll-snap-points-x: repeat(100%)
+    user-select: none
 
 #container
     position: absolute
@@ -51,8 +47,8 @@ body
     white-space: nowrap
     overflow-x: scroll
     overflow-y: hidden
-    -webkit-scroll-snap-type: mandatory
-    -webkit-scroll-snap-points-x: repeat(100%)
+    scroll-snap-type: mandatory
+    scroll-snap-points-x: repeat(100%)
 
 .room-wrapper
     width: 100%
@@ -146,9 +142,9 @@ h3
     white-space: nowrap
     overflow-y: hidden
     overflow-x: auto
-    -webkit-scroll-snap-type: mandatory
-    -webkit-scroll-snap-points-x: repeat(230px)
-    -webkit-scroll-snap-padding: 0 0 0 15px
+    scroll-snap-type: mandatory
+    scroll-snap-points-x: repeat(230px)
+    scroll-snap-padding: 0 0 0 15px
     
 .scenes
     width: 800px
