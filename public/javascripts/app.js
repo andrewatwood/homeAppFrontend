@@ -104,7 +104,7 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
 var app = new Vue({
     el: '#app',
     data: {
-        server : new Domoticz('http://localhost:8080'),
+        server : new Domoticz('http://andrews-macbook-pro.local:8080'),
         showRoomPicker : false,
         room : 2
     },
