@@ -28,7 +28,6 @@ function size(){
         var gutter = accessories.outerWidth(true) - square;
     }
     //Set scene width
-
     console.log('Resizing - square: %s gutter: %s',square,gutter);
     var longWidth = square*2 + gutter;
     scenes.width(longWidth).css('margin',gutter/2);

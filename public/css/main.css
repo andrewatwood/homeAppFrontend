@@ -183,6 +183,66 @@ h3 {
   padding-bottom: 30.4347826087%;
   font-size: 0.85em;
   position: relative; }
+  @media screen and (min-width: 132px) and (max-width: 227px) {
+    .accessory {
+      width: 91.3043478261%;
+      padding-bottom: 91.3043478261%;
+      margin: 4.347826087%; } }
+  @media screen and (min-width: 228px) and (max-width: 323px) {
+    .accessory {
+      width: 45.652173913%;
+      padding-bottom: 45.652173913%;
+      margin: 2.1739130435%; } }
+  @media screen and (min-width: 324px) and (max-width: 419px) {
+    .accessory {
+      width: 30.4347826087%;
+      padding-bottom: 30.4347826087%;
+      margin: 1.4492753623%; } }
+  @media screen and (min-width: 420px) and (max-width: 515px) {
+    .accessory {
+      width: 22.8260869565%;
+      padding-bottom: 22.8260869565%;
+      margin: 1.0869565217%; } }
+  @media screen and (min-width: 516px) and (max-width: 611px) {
+    .accessory {
+      width: 18.2608695652%;
+      padding-bottom: 18.2608695652%;
+      margin: 0.8695652174%; } }
+  @media screen and (min-width: 612px) and (max-width: 707px) {
+    .accessory {
+      width: 15.2173913043%;
+      padding-bottom: 15.2173913043%;
+      margin: 0.7246376812%; } }
+  @media screen and (min-width: 708px) and (max-width: 803px) {
+    .accessory {
+      width: 13.0434782609%;
+      padding-bottom: 13.0434782609%;
+      margin: 0.6211180124%; } }
+  @media screen and (min-width: 804px) and (max-width: 899px) {
+    .accessory {
+      width: 11.4130434783%;
+      padding-bottom: 11.4130434783%;
+      margin: 0.5434782609%; } }
+  @media screen and (min-width: 900px) and (max-width: 995px) {
+    .accessory {
+      width: 10.1449275362%;
+      padding-bottom: 10.1449275362%;
+      margin: 0.4830917874%; } }
+  @media screen and (min-width: 996px) and (max-width: 1091px) {
+    .accessory {
+      width: 9.1304347826%;
+      padding-bottom: 9.1304347826%;
+      margin: 0.4347826087%; } }
+  @media screen and (min-width: 1092px) and (max-width: 1187px) {
+    .accessory {
+      width: 8.3003952569%;
+      padding-bottom: 8.3003952569%;
+      margin: 0.395256917%; } }
+  @media screen and (min-width: 1188px) and (max-width: 10000000px) {
+    .accessory {
+      width: 7.6086956522%;
+      padding-bottom: 7.6086956522%;
+      margin: 0.3623188406%; } }
   .accessory .label {
     position: absolute;
     bottom: 10px;
