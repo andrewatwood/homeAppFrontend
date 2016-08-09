@@ -3,6 +3,7 @@ function Domoticz(server){
     this.server = server;
     this.rooms = {};
     this.devices = {};
+    this.scenes = {};
     this.init();
 }
 
@@ -28,11 +29,11 @@ Domoticz.prototype.getRooms = function(){
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
                 rooms[result.idx] = {
-                    name : result.Name
+                    name : result.Name,
+                    scenes : []
                 }
             }
             this.rooms = rooms;
-            console.log(this);
             deferred.resolve();
             return true;
         }.bind(this)
@@ -42,7 +43,7 @@ Domoticz.prototype.getRooms = function(){
 
 Domoticz.prototype.getDevices = function(){
     var deferred = $.Deferred();
-    var url = this.server + '/json.htm?type=devices&filter=all&used=true&order=Name';
+    var url = this.server + '/json.htm?type=devices&filter=light&used=true&order=Name';
     var devices = {};
     $.get(
         url,
@@ -53,21 +54,23 @@ Domoticz.prototype.getDevices = function(){
             }
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
+                if(result.Type == 'Scene'){
+                    continue
+                }
                 var device = {};
                 device.name = result.Name;
                 device.idx = result.idx;
                 device.status = result.Status;
-                device.locationId = result.PlanID;
                 device.location = this.rooms[result.PlanID];
+                device.location.id = result.PlanID;
                 if (device.status != 'Off'){
                     device.on = true;
                 } else {
                     device.on = false;
                 }
-                devices[result.ID] = device;
+                devices[device.idx] = device;
             }
             this.devices = devices;
-            console.log(this);
             deferred.resolve();
             return true;
         }.bind(this)
@@ -101,16 +104,31 @@ Domoticz.prototype.getScenes = function(){
     ).done(function(){
         deferred.resolve();
         var gets = [];
-        console.log(this);
         $.each(this.scenes, function(key, value){
-            console.log('Looping scenes: key %s value %s', key, value);
-/*            var get = $.get(
+            var url = this.server + '/json.htm?type=command&param=getscenedevices&idx=' + key + '&isscene=true';
+            var get = $.get(
                 url,
-                function(data){
-
-                }.bind(this)
-            )*/
+                function(key, data){
+                    var rooms = [];
+                    if(data.status != 'OK' || !data.result){
+                        return null;
+                    }
+                    var devices = data.result.map(function(device){
+                        return device.DevRealIdx;
+                    });
+                    devices.map(function(deviceIdx){
+                        var deviceRoom = this.devices[deviceIdx].location.id;
+                        if(rooms.indexOf(deviceRoom) == -1){
+                            rooms.push(deviceRoom);
+                            this.rooms[deviceRoom].scenes.push(key);
+                        }
+                    }.bind(this));
+                    this.scenes[key].rooms = rooms;
+                }.bind(this, key)
+            );
+            gets.push(get);
         }.bind(this));
+        return $.when(gets);
     }.bind(this));
     return deferred;
 }
@@ -164,9 +182,13 @@ var app = new Vue({
             console.log('Target offset: %d current position: %d', offset, current);
             var screens = Math.abs(offset)/width;
             $('#container').animate({scrollLeft : current+offset},125*screens);
+            $('#options').toggleClass('hidden');
         },
         toggleRoomPicker : function() {
-            this.showRoomPicker = !this.showRoomPicker;
+            $('#options').toggleClass('hidden')
+            //this.showRoomPicker = !this.showRoomPicker;
+        },
+        filterScenes : function(scenes, id){
         }
     }
 });

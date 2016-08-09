@@ -300,16 +300,17 @@ h3 {
       position: relative;
       -webkit-transform: translateY(0%);
               transform: translateY(0%);
-      -webkit-transition: 0.2s ease;
-      transition: 0.2s ease;
+      -webkit-transition: 0.25s ease;
+      transition: 0.25s ease;
       width: 100%;
       max-width: 420px;
       margin: 0 auto; }
       #options .menu-wrapper .menu .option {
+        font-size: 1.2em;
         margin: 0 7px;
         text-align: center;
-        height: 50px;
-        line-height: 50px;
+        height: 55px;
+        line-height: 55px;
         background-color: rgba(255, 255, 255, 0.9);
         box-sizing: border-box;
         border-bottom: 1px solid #bfbfbf;

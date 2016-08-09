@@ -11,7 +11,7 @@ html
     link(rel='stylesheet', href='/css/main.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
   body#app
-    #options(v-bind:class='{"hidden" : !showRoomPicker}')
+    #options.hidden
       .menu-wrapper
         .menu
           .option(v-for='(id, room) in server.rooms', v-on:click='setRoom(id)') {{room.name}}

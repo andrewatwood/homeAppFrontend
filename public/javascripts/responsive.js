@@ -52,15 +52,15 @@ function bind(){
         if(current > scrollThreshold){
             if(!titleHidden[room]){
             titleHidden[room] = true;
-            bigTitle.toggleClass('hidden');
-            littleTitle.toggleClass('hidden');
+            bigTitle.addClass('hidden');
+            littleTitle.removeClass('hidden');
             $(this).toggleClass('border');
             }
         } else {
             if(titleHidden[room]){
             titleHidden[room] = false;
-            bigTitle.toggleClass('hidden');
-            littleTitle.toggleClass('hidden');
+            bigTitle.removeClass('hidden');
+            littleTitle.addClass('hidden');
             $(this).toggleClass('border');
             }
     }
