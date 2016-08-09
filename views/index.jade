@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  .room-wrapper(v-for='(id, room) in server.rooms')
+  .room-wrapper(v-for='(id, room) in server.rooms', room='{{room}}')
     .top-controls
       .button(v-on:click='toggleRoomPicker()')
       .room-title-small.hidden {{room}}
       .button.right
       .button.right.edit
     .room-title {{room}}
-    .scroll
+    .scroll(room='{{room}}')
       .wrapper
         //h2 Living Room light on.
           br 
@@ -17,7 +17,7 @@ block content
         .scenes-wrapper
           .scenes
             .action.scene
-              .title Full Light
+              .title Full Light Really Long
             .action.scene.inactive 
               .title Dim Lights
             .action.scene.inactive
@@ -34,6 +34,21 @@ block content
               .title Good Morning
         h3 Accessories
         .accessories
+          .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .label
+              .room {{device.location}}
+              .name {{device.name}}
+              .status {{device.on ? 'On' : 'Off'}}
+          .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .label
+              .room {{device.location}}
+              .name {{device.name}}
+              .status {{device.on ? 'On' : 'Off'}}
+          .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .label
+              .room {{device.location}}
+              .name {{device.name}}
+              .status {{device.on ? 'On' : 'Off'}}
           .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
             .label
               .room {{device.location}}

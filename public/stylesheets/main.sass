@@ -142,21 +142,30 @@ h3
     padding-left: 20px
     width: 120vw
     max-height: 200px
+    margin-bottom: 25px
+    white-space: nowrap
     overflow-y: hidden
     overflow-x: auto
-    margin-bottom: 25px
+    -webkit-scroll-snap-type: mandatory
+    -webkit-scroll-snap-points-x: repeat(230px)
+    -webkit-scroll-snap-padding: 0 0 0 15px
     
 .scenes
     width: 800px
     padding-right: 60px
     max-height: 130px
-    white-space: default
+    white-space: normal
+
+.accessories
+    width: 100%
+    max-width: 100%
+    white-space: normal
 
 .action
     background: white
     border-radius: 10px
-    margin-right: 5px
-    margin-left: 5px
+    margin-right: 5/345 * 100% //5px
+    margin-left: 5/345 * 100%
     margin-bottom: 10px
     color: black
     display: inline-block
@@ -191,7 +200,12 @@ h3
     height: 60px
     font-size: 1.2em
     line-height: 60px
+    margin-right: 5px
+    margin-left: 5px
     -webkit-scroll-snap-coordinate: 0% 0%
     .title
         margin-left: 55px
+        max-width: 100%
+        @include truncate
+
 

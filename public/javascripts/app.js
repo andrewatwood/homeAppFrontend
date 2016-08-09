@@ -1,3 +1,4 @@
+//Server prototypes
 function Domoticz(server){
     this.server = server;
     this.rooms = {};
@@ -6,7 +7,11 @@ function Domoticz(server){
 }
 
 Domoticz.prototype.init = function(){
-    return this.getRooms().then(this.getDevices())
+    this.getRooms().then(this.getDevices()).then(function(){
+        Vue.nextTick(function(){
+            init();
+        });
+    });
 }
 
 Domoticz.prototype.getRooms = function(){
@@ -94,6 +99,8 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
     }
 }
 
+
+//Vue basics
 var app = new Vue({
     el: '#app',
     data: {

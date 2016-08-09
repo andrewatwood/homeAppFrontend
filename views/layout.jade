@@ -6,38 +6,10 @@ html
     meta(name='apple-mobile-web-app-capable', content='yes')
     script(src='javascripts/vue.js')
     script(src='javascripts/jquery-3.1.0.min.js')
+    script(src='javascripts/responsive.js')
     title Home Mockup
     link(rel='stylesheet', href='/css/main.css')
   body#app
     #container
       block content
     script(src='javascripts/app.js')
-    script.
-      var square = Math.floor(($('wrapper').width()-30)/3);
-      var gutter = Math.floor($('.wrapper').width()*(5/345));
-      var snapScene = 'repeat(' + (square*2+gutter*4) + 'px)';
-      var bigTitle = $('.room-title');
-      var littleTitle = $('.top-controls .room-title-small');
-      var scrollWrapper = $('#scroll');
-      var scrollThreshold = 25
-      var titleHidden = false;
-      $('.action.accessory').width(square).height(square).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);
-      $('.action.scene').width(square*2+gutter*2).height(gutter*12).css('margin-right',gutter,'margin-left',gutter,'margin-bottom',gutter*2);      
-      $('.scroll').scroll(function(){
-        var current = $('#scroll').scrollTop();
-        if(current > scrollThreshold){
-          if(!titleHidden){
-            titleHidden = true;
-            bigTitle.toggleClass('hidden');
-            littleTitle.toggleClass('hidden');
-            scrollWrapper.toggleClass('border');
-          }
-        } else {
-          if(titleHidden){
-            titleHidden = false;
-            bigTitle.toggleClass('hidden');
-            littleTitle.toggleClass('hidden');
-            scrollWrapper.toggleClass('border');
-          }
-        }
-      })
