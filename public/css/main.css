@@ -48,7 +48,6 @@ body {
   padding-top: 32px;
   position: relative;
   display: inline-block;
-  border: 1px solid blue;
   margin: 0; }
 
 .scroll {
@@ -163,7 +162,11 @@ h3 {
   height: 105px;
   font-size: 0.85em; }
   .accessory .room, .accessory .name, .accessory .status {
-    margin-left: 10px; }
+    margin-left: 10px;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
   .accessory .room {
     margin-top: 50px; }
   .accessory .status {
