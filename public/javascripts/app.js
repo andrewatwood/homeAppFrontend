@@ -7,7 +7,7 @@ function Domoticz(server){
 }
 
 Domoticz.prototype.init = function(){
-    this.getRooms().then(this.getDevices()).then(function(){
+    this.getRooms().then(this.getDevices()).then(this.getScenes()).then(function(){
         Vue.nextTick(function(){
             init();
         });
@@ -27,7 +27,9 @@ Domoticz.prototype.getRooms = function(){
             }
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
-                rooms[result.idx] = result.Name;
+                rooms[result.idx] = {
+                    name : result.Name
+                }
             }
             this.rooms = rooms;
             console.log(this);
@@ -56,7 +58,7 @@ Domoticz.prototype.getDevices = function(){
                 device.idx = result.idx;
                 device.status = result.Status;
                 device.locationId = result.PlanID;
-                device.location = this.rooms[result.PlanID]
+                device.location = this.rooms[result.PlanID];
                 if (device.status != 'Off'){
                     device.on = true;
                 } else {
@@ -70,6 +72,46 @@ Domoticz.prototype.getDevices = function(){
             return true;
         }.bind(this)
     );
+    return deferred;
+}
+
+Domoticz.prototype.getScenes = function(){
+    var deferred = $.Deferred();
+    var url = this.server + '/json.htm?type=scenes';
+    var scenes = {};
+    $.get(
+        url,
+        function(data){
+            if(data.status != 'OK'){
+                deferred.reject();
+                return null;
+            }
+            for( var i = 0; i < data.result.length; i++){
+                var result = data.result[i];
+                if(result.Type != 'Scene'){
+                    continue;
+                }
+                var scene = {};
+                scene.name = result.Name;
+                scene.on = result.Status == 'On';
+                scenes[result.idx] = scene;   
+            }
+            this.scenes = scenes;
+        }.bind(this)
+    ).done(function(){
+        deferred.resolve();
+        var gets = [];
+        console.log(this);
+        $.each(this.scenes, function(key, value){
+            console.log('Looping scenes: key %s value %s', key, value);
+/*            var get = $.get(
+                url,
+                function(data){
+
+                }.bind(this)
+            )*/
+        }.bind(this));
+    }.bind(this));
     return deferred;
 }
 

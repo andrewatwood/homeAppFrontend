@@ -1,10 +1,37 @@
 function size(){
+    //Check wrapper width for button sizing
+    var wrapper = $('.wrapper');
+    if(wrapper.width()>384){
+        console.log('Big screen - finding best fit');
+        var optimal = 115;
+        var max = 140;
+        var min = 96;
+        var total = wrapper.width();
+        var exact = total/optimal;
+        var roundUp = Math.ceil(exact);
+        var roundDown = Math.floor(exact);
+        var totalWidth;
+        if(total/roundUp >= min){
+            totalWidth = total/roundUp;
+        } else {
+            totalWidth = total/roundDown
+        }
+
+        var buttonWidth = totalWidth*(105/115);
+        var marginWidth = totalWidth*(5/115);
+        accessories.width(buttonWidth).css('margin',marginWidth).css('padding-bottom',buttonWidth);
+        var square = buttonWidth;
+        var gutter = marginWidth*2;
+    } else {
+        accessories.width('').css('margin','').css('padding-bottom','');
+        var square = accessories.width();
+        var gutter = accessories.outerWidth(true) - square;
+    }
     //Set scene width
-    var square = accessories.width();
-    var gutter = accessories.outerWidth(true) - square;
+
     console.log('Resizing - square: %s gutter: %s',square,gutter);
     var longWidth = square*2 + gutter;
-    scenes.width(longWidth).css('margin-right',gutter/2,'margin-left',gutter/2);
+    scenes.width(longWidth).css('margin',gutter/2);
 
     //Set scene wrapper width
     $('.scenes').each(function(){

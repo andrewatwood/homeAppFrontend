@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  .room-wrapper(v-for='(id, room) in server.rooms', room='{{room}}')
+  .room-wrapper(v-for='(id, room) in server.rooms', room='{{room.name}}')
     .top-controls
       .button(v-on:click='toggleRoomPicker()')
-      .room-title-small.hidden {{room}}
+      .room-title-small.hidden {{room.name}}
       .button.right
       .button.right.edit
-    .room-title {{room}}
-    .scroll(room='{{room}}')
+    .room-title {{room.name}}
+    .scroll(room='{{room.name}}')
       .wrapper
         //h2 Living Room light on.
           br 
@@ -30,22 +30,32 @@ block content
         .accessories
           .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
             .label
-              .room {{device.location}}
+              .room {{device.location.name}}
               .name {{device.name}}
               .status {{device.on ? 'On' : 'Off'}}
           .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
             .label
-              .room {{device.location}}
+              .room {{device.location.name}}
               .name {{device.name}}
               .status {{device.on ? 'On' : 'Off'}}
           .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
             .label
-              .room {{device.location}}
+              .room {{device.location.name}}
               .name {{device.name}}
               .status {{device.on ? 'On' : 'Off'}}
           .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
             .label
-              .room {{device.location}}
+              .room {{device.location.name}}
+              .name {{device.name}}
+              .status {{device.on ? 'On' : 'Off'}}
+          .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .label
+              .room {{device.location.name}}
+              .name {{device.name}}
+              .status {{device.on ? 'On' : 'Off'}}
+          .action.accessory(v-for='device in server.devices | filterBy id in "locationId"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .label
+              .room {{device.location.name}}
               .name {{device.name}}
               .status {{device.on ? 'On' : 'Off'}}
       .room-picker(v-if='showRoomPicker')
