@@ -170,7 +170,7 @@ h3
     display: inline-block
     transition: all 0.03s
     &.inactive
-        -webkit-backdrop-filter: blur(20px)
+        //-webkit-backdrop-filter: blur(20px)
         background: rgba(white,0.6)
         color: lighten(black,30%)
         .status
@@ -214,6 +214,60 @@ h3
     .title
         margin-left: 55px
         max-width: 100%
+        padding-right: 10px
         @include truncate
-
+#options
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: rgba(black, 0.4)
+    z-index: 10
+    transition: background-color 0.2s, top 0s
+    &.hidden
+        background-color: rgba(black, 0)
+        top: 15000px
+        transition: background-color 0.2s, top 0s linear 0.2s
+        .menu-wrapper
+            .menu
+                transform: translateY(110%)
+    .menu-wrapper
+        position: absolute
+        bottom: 0px
+        height: auto
+        width: 100%
+        .menu
+            position: relative
+            transform: translateY(0%)
+            transition: 0.2s ease
+            width: 100%
+            max-width: 420px
+            margin: 0 auto
+            .option     
+                $option-height: 50px
+                margin: 0 7px
+                text-align: center
+                height: $option-height
+                line-height: $option-height
+                background-color: rgba(white, 0.9)
+                box-sizing: border-box
+                border-bottom: 1px solid lighten(black, 75%)
+                color: #A60000
+                font-weight: normal
+                &:hover
+                    background-color: rgba(darken(white, 10%), 0.9)
+                &.cancel
+                    font-weight: bold
+                    margin: 7px
+                    border-radius: 10px
+                    background-color: white
+                    &:hover
+                        background-color: darken(white, 10%)
+                &:first-of-type
+                    border-radius: 10px 10px 0 0
+                &:nth-last-of-type(2)
+                    border-radius: 0 0 10px 10px
+                    border-bottom: 0px solid
+                
 

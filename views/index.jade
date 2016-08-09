@@ -1,6 +1,11 @@
 extends layout
 
 block content
+  #options(v-bind:class='{"hidden" : !showRoomPicker}')
+    .menu-wrapper
+      .menu
+        .option(v-for='(id, room) in server.rooms') {{room.name}}
+        .option.cancel(v-on:click='toggleRoomPicker()') Cancel
   .room-wrapper(v-for='(id, room) in server.rooms', room='{{room.name}}')
     .top-controls
       .button(v-on:click='toggleRoomPicker()')
@@ -58,6 +63,3 @@ block content
               .room {{device.location.name}}
               .name {{device.name}}
               .status {{device.on ? 'On' : 'Off'}}
-      .room-picker(v-if='showRoomPicker')
-        li(v-for='(id, room) in server.rooms')
-          a(v-on:click="setRoom(id)") {{room}}

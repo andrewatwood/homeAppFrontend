@@ -172,7 +172,6 @@ h3 {
   -webkit-transition: all 0.03s;
   transition: all 0.03s; }
   .action.inactive {
-    -webkit-backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.6);
     color: #4d4d4d; }
     .action.inactive .status {
@@ -269,6 +268,64 @@ h3 {
   .scene .title {
     margin-left: 55px;
     max-width: 100%;
+    padding-right: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
+
+#options {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  -webkit-transition: background-color 0.2s, top 0s;
+  transition: background-color 0.2s, top 0s; }
+  #options.hidden {
+    background-color: transparent;
+    top: 15000px;
+    -webkit-transition: background-color 0.2s, top 0s linear 0.2s;
+    transition: background-color 0.2s, top 0s linear 0.2s; }
+    #options.hidden .menu-wrapper .menu {
+      -webkit-transform: translateY(110%);
+              transform: translateY(110%); }
+  #options .menu-wrapper {
+    position: absolute;
+    bottom: 0px;
+    height: auto;
+    width: 100%; }
+    #options .menu-wrapper .menu {
+      position: relative;
+      -webkit-transform: translateY(0%);
+              transform: translateY(0%);
+      -webkit-transition: 0.2s ease;
+      transition: 0.2s ease;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto; }
+      #options .menu-wrapper .menu .option {
+        margin: 0 7px;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-sizing: border-box;
+        border-bottom: 1px solid #bfbfbf;
+        color: #A60000;
+        font-weight: normal; }
+        #options .menu-wrapper .menu .option:hover {
+          background-color: rgba(230, 230, 230, 0.9); }
+        #options .menu-wrapper .menu .option.cancel {
+          font-weight: bold;
+          margin: 7px;
+          border-radius: 10px;
+          background-color: white; }
+          #options .menu-wrapper .menu .option.cancel:hover {
+            background-color: #e6e6e6; }
+        #options .menu-wrapper .menu .option:first-of-type {
+          border-radius: 10px 10px 0 0; }
+        #options .menu-wrapper .menu .option:nth-last-of-type(2) {
+          border-radius: 0 0 10px 10px;
+          border-bottom: 0px solid; }
