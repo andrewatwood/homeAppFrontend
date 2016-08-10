@@ -261,6 +261,13 @@ h3 {
       margin-top: 50px; }
     .accessory .label .status {
       color: #737373; }
+  .accessory .icon {
+    position: absolute;
+    top: 10px; }
+    .accessory .icon img {
+      height: 26px;
+      width: auto;
+      margin-left: 10px; }
 
 .scene {
   width: 220px;

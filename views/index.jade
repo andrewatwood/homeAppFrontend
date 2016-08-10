@@ -25,6 +25,9 @@ block content
         h3 Accessories
         .accessories
           .action.accessory(v-for='device in server.devices | filterBy id in "location.id"', v-bind:class="{ 'inactive': !device.on }", v-on:click="toggleDevice($key)")
+            .icon
+              img(v-show='device.on' src='/images/icons/lightbulb.svg')
+              img(v-show='!device.on' src='/images/icons/lightbulb-inactive.svg')
             .label
               .room {{device.location.name}}
               .name {{device.name}}

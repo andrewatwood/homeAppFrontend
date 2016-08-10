@@ -1,0 +1,9 @@
+
+<svg width="34px" height="54px" viewBox="-175 265 34 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <path d="M-163,311 L-153,311 C-153,311 -123,265 -158,265 C-193,265 -163,311 -163,311 Z" id="Path-2" stroke="none" fill="#FFCC00" fill-rule="evenodd"></path>
+    <polygon id="Triangle" stroke="none" fill="#9B9B9B" fill-rule="evenodd" transform="translate(-158.000000, 318.000000) scale(1, -1) translate(158.000000, -318.000000) " points="-158 317 -154 319 -162 319"></polygon>
+    <rect id="Rectangle" stroke="none" fill="#9B9B9B" fill-rule="evenodd" x="-163" y="312" width="10" height="4"></rect>
+</svg>
