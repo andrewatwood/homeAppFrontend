@@ -142,12 +142,22 @@ Domoticz.prototype.toggleDevice = function(deviceId){
     );
 }
 
+Domoticz.prototype.activateScene = function(sceneId){
+    this.scenes[sceneId].on = true;
+    this.sendCommand({
+        sceneOn : true,
+    }, sceneId
+    );
+}
+
 Domoticz.prototype.sendCommand = function(command, deviceId){
     if('on' in command){
         var cmd = command.on ? 'On' : 'Off';
         var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + this.devices[deviceId].idx + '&switchcmd=' + cmd;
     } else if ('brightness' in command){
 
+    } else if ('sceneOn' in command){
+        var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + deviceId + '&switchcmd=On';
     }
     if(url){
         console.log(url);
@@ -172,6 +182,9 @@ var app = new Vue({
     methods: {
         toggleDevice : function(deviceId) {
             this.server.toggleDevice(deviceId);
+        },
+        activateScene : function(sceneId) {
+            this.server.activateScene(sceneId);
         },
         setRoom : function(roomId) {
             this.currentRoom = roomId;

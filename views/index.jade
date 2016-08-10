@@ -17,7 +17,7 @@ block content
         h3 Scenes
         .scenes-wrapper
           .scenes
-            .action.scene(v-for='sceneId in room.scenes', v-bind:class="{ 'inactive': !server.scenes[sceneId].on }")
+            .action.scene(v-for='sceneId in room.scenes', v-bind:class="{ 'inactive': !server.scenes[sceneId].on }", v-on:click="activateScene(sceneId)")
               .title {{server.scenes[sceneId].name}}
         h3 Accessories
         .accessories
