@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  .room-wrapper(v-for='(id, room) in server.rooms', room='{{room.name}}', v-bind:style="{ backgroundImage: 'url(/images/rooms/' + room.filename + '.jpg),' + 'url(/images/rooms/' + room.filename + '.png)' }")
+  .room-wrapper(v-for='(id, room) in server.rooms', room='{{room.name}}') 
+    //, v-bind:style="{ backgroundImage: 'url(/images/rooms/' + room.filename + '.jpg),' + 'url(/images/rooms/' + room.filename + '.png)' }")
     .top-controls
       .button(v-on:click='toggleRoomPicker()')
       .room-title-small.hidden {{room.name}}
@@ -16,7 +17,7 @@ block content
         h3 Scenes
         .scenes-wrapper
           .scenes
-            .action.scene(v-for='sceneId in room.scenes')
+            .action.scene(v-for='sceneId in room.scenes', v-bind:class="{ 'inactive': !server.scenes[sceneId].on }")
               .title {{server.scenes[sceneId].name}}
         h3 Accessories
         .accessories

@@ -30,12 +30,6 @@ body
     bottom: 0
     overflow-x: scroll
     overflow-y: hidden
-    //background: url('/images/screenshot.png')
-    //background: url('/images/dog.png')
-    background-repeat:   no-repeat
-    background-position: center center
-    background-color: green
-    background-size: cover
     background-attachment: fixed
     -webkit-touch-callout: none /* iOS Safari */
     user-select: none
@@ -63,6 +57,7 @@ body
     background-repeat: no-repeat
     background-position: center center
     background-size: cover
+    background-image: url('/images/rooms/default.png')
 
 .scroll
     position: absolute
@@ -118,7 +113,7 @@ h3
         display: inline-block
         height: 30px
         width: 30px
-        background: rgba(white,0.6)
+        background: rgba(white,0.8)
         border-radius: 15px
         margin: 0 12px 0 0
         &.right
@@ -174,7 +169,7 @@ h3
     transition: all 0.03s
     &.inactive
         //-webkit-backdrop-filter: blur(20px)
-        background: rgba(white,0.6)
+        background: rgba(white,0.8)
         color: lighten(black,30%)
         .status
             color: lighten(black, 45%)

@@ -18,10 +18,6 @@ body {
   bottom: 0;
   overflow-x: scroll;
   overflow-y: hidden;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: green;
-  background-size: cover;
   background-attachment: fixed;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -55,7 +51,8 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover; }
+  background-size: cover;
+  background-image: url("/images/rooms/default.png"); }
 
 .scroll {
   position: absolute;
@@ -112,7 +109,7 @@ h3 {
     display: inline-block;
     height: 30px;
     width: 30px;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     margin: 0 12px 0 0; }
     .top-controls .button.right {
@@ -174,7 +171,7 @@ h3 {
   -webkit-transition: all 0.03s;
   transition: all 0.03s; }
   .action.inactive {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     color: #4d4d4d; }
     .action.inactive .status {
       color: #737373; }
