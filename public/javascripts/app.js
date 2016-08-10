@@ -30,6 +30,7 @@ Domoticz.prototype.getRooms = function(){
                 var result = data.result[i];
                 rooms[result.idx] = {
                     name : result.Name,
+                    filename : result.Name.toLowerCase().replace(/\s+/g, ''),
                     scenes : []
                 }
             }

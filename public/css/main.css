@@ -52,7 +52,10 @@ body {
   padding-top: 32px;
   position: relative;
   display: inline-block;
-  margin: 0; }
+  margin: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; }
 
 .scroll {
   position: absolute;
@@ -106,7 +109,6 @@ h3 {
   padding: 0 17px;
   line-height: 30px; }
   .top-controls .button {
-    -webkit-backdrop-filter: blur(20px);
     display: inline-block;
     height: 30px;
     width: 30px;

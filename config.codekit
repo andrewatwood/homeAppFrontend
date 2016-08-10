@@ -75,6 +75,50 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/public\/images\/rooms\/bathroom.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 55309,
+		"inputAbbreviatedPath": "\/public\/images\/rooms\/bathroom.jpg",
+		"outputAbbreviatedPath": "\/public\/images\/rooms\/bathroom.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/images\/rooms\/bedroom.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 199984,
+		"inputAbbreviatedPath": "\/public\/images\/rooms\/bedroom.jpg",
+		"outputAbbreviatedPath": "\/public\/images\/rooms\/bedroom.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/images\/rooms\/kitchen.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 109432,
+		"inputAbbreviatedPath": "\/public\/images\/rooms\/kitchen.jpg",
+		"outputAbbreviatedPath": "\/public\/images\/rooms\/kitchen.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/images\/rooms\/livingroom.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 0,
+		"inputAbbreviatedPath": "\/public\/images\/rooms\/livingroom.png",
+		"outputAbbreviatedPath": "\/public\/images\/rooms\/livingroom.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/images\/screenshot.png": {
 		"fileType": 32768,
 		"ignore": 0,
