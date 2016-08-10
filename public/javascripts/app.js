@@ -115,10 +115,12 @@ Domoticz.prototype.getScenes = function(){
                         return null;
                     }
                     var devices = data.result.map(function(device){
-                        return device.DevRealIdx;
+                        return {idx : device.DevRealIdx,
+                                on : device.Command!='Off' ? true : false }
                     });
-                    devices.map(function(deviceIdx){
-                        var deviceRoom = this.devices[deviceIdx].location.id;
+                    this.scenes[key].devices = devices;
+                    devices.map(function(device){
+                        var deviceRoom = this.devices[device.idx].location.id;
                         if(rooms.indexOf(deviceRoom) == -1){
                             rooms.push(deviceRoom);
                             this.rooms[deviceRoom].scenes.push(key);
@@ -134,6 +136,28 @@ Domoticz.prototype.getScenes = function(){
     return deferred;
 }
 
+Domoticz.prototype.checkSceneStatus = function(sceneId){
+    var match = true;
+    var scene = this.scenes[sceneId];
+    for (var i = 0; i < scene.devices.length; i++){
+        var device = scene.devices[i];
+        if(this.devices[device.idx].on != device.on){
+            match = false;
+            break;
+        }
+    }
+    this.scenes[sceneId].on = match;
+}
+
+Domoticz.prototype.updateScenes = function(deviceId){
+    var roomId = this.devices[deviceId].location.id;
+    console.log('Updating for room %d', roomId);
+    var scenes = this.rooms[roomId].scenes;
+    scenes.map(function(sceneId){
+        this.checkSceneStatus(sceneId);
+    }.bind(this));
+}
+
 Domoticz.prototype.toggleDevice = function(deviceId){
     this.devices[deviceId].on = !this.devices[deviceId].on;
     this.sendCommand({
@@ -142,12 +166,31 @@ Domoticz.prototype.toggleDevice = function(deviceId){
     );
 }
 
-Domoticz.prototype.activateScene = function(sceneId){
-    this.scenes[sceneId].on = true;
-    this.sendCommand({
-        sceneOn : true,
-    }, sceneId
+Domoticz.prototype.setDeviceStatus = function(deviceId, command){
+    for(var key in command){
+        this.devices[deviceId][key] = command[key];
+    }
+    this.sendCommand(command, deviceId
     );
+}
+
+Domoticz.prototype.toggleScene = function(sceneId){
+    if(!this.scenes[sceneId].on){
+        this.scenes[sceneId].on = true;
+        this.sendCommand({
+            sceneOn : true,
+        }, sceneId
+        );
+    } else {
+        this.scenes[sceneId].on = false;
+        var scene = this.scenes[sceneId];
+        scene.devices.map(function(device){
+            var command = {
+                on : !device.on
+            }
+            this.setDeviceStatus(device.idx,command);
+        }.bind(this));
+    }
 }
 
 Domoticz.prototype.sendCommand = function(command, deviceId){
@@ -182,9 +225,10 @@ var app = new Vue({
     methods: {
         toggleDevice : function(deviceId) {
             this.server.toggleDevice(deviceId);
+            this.server.updateScenes(deviceId);
         },
-        activateScene : function(sceneId) {
-            this.server.activateScene(sceneId);
+        toggleScene : function(sceneId) {
+            this.server.toggleScene(sceneId);
         },
         setRoom : function(roomId) {
             this.currentRoom = roomId;
