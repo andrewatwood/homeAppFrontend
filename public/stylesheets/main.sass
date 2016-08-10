@@ -173,9 +173,9 @@ h3
     &.inactive
         //-webkit-backdrop-filter: blur(20px)
         background: rgba(white,0.8)
-        color: lighten(black,30%)
+        color: lighten(black,35%)
         .status
-            color: lighten(black, 45%)
+            color: lighten(black, 55%)
 
 .accessory
     width: 105/345 * (100%) //105px
@@ -203,7 +203,7 @@ h3
         .room
             margin-top: 50px
         .status
-            color: lighten(black, 50%)
+            color: lighten(black, 45%)
 .scene
     width: 220px
     height: 60px
@@ -213,10 +213,19 @@ h3
     margin-left: 5px
     -webkit-scroll-snap-coordinate: 0% 0%
     .title
-        margin-left: 55px
-        max-width: 100%
+        display: inline-block
+        max-width: calc(90% - 50px)
         padding-right: 10px
         @include truncate
+        vertical-align: top
+    .icon
+        width: 55px
+        display: inline-block
+        img
+            display: block
+            height: 26px
+            width: auto
+            margin: 15px auto 0
 #options
     position: absolute
     top: 0
@@ -257,6 +266,7 @@ h3
                 border-bottom: 1px solid lighten(black, 75%)
                 color: #A60000
                 font-weight: normal
+                cursor: pointer
                 .select
                     position: absolute
                     display: inline-block

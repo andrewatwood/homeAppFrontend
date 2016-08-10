@@ -178,9 +178,9 @@ h3 {
   cursor: pointer; }
   .action.inactive {
     background: rgba(255, 255, 255, 0.8);
-    color: #4d4d4d; }
+    color: #595959; }
     .action.inactive .status {
-      color: #737373; }
+      color: #8c8c8c; }
 
 .accessory {
   width: 30.4347826087%;
@@ -260,7 +260,7 @@ h3 {
     .accessory .label .room {
       margin-top: 50px; }
     .accessory .label .status {
-      color: gray; }
+      color: #737373; }
 
 .scene {
   width: 220px;
@@ -271,12 +271,21 @@ h3 {
   margin-left: 5px;
   -webkit-scroll-snap-coordinate: 0% 0%; }
   .scene .title {
-    margin-left: 55px;
-    max-width: 100%;
+    display: inline-block;
+    max-width: calc(90% - 50px);
     padding-right: 10px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; }
+    text-overflow: ellipsis;
+    vertical-align: top; }
+  .scene .icon {
+    width: 55px;
+    display: inline-block; }
+    .scene .icon img {
+      display: block;
+      height: 26px;
+      width: auto;
+      margin: 15px auto 0; }
 
 #options {
   position: absolute;
@@ -320,7 +329,8 @@ h3 {
         box-sizing: border-box;
         border-bottom: 1px solid #bfbfbf;
         color: #A60000;
-        font-weight: normal; }
+        font-weight: normal;
+        cursor: pointer; }
         #options .menu-wrapper .menu .option .select {
           position: absolute;
           display: inline-block;

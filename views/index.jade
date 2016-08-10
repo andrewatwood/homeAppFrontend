@@ -18,6 +18,9 @@ block content
         .scenes-wrapper
           .scenes
             .action.scene(v-for='sceneId in room.scenes', v-bind:class="{ 'inactive': !server.scenes[sceneId].on }", v-on:click="toggleScene(sceneId)", idx="{{sceneId}}")
+              .icon
+                img(v-show='server.scenes[sceneId].on' src='/images/icons/home.svg')
+                img(v-show='!server.scenes[sceneId].on' src='/images/icons/home-inactive.svg')
               .title {{server.scenes[sceneId].name}}
         h3 Accessories
         .accessories
