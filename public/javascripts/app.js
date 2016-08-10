@@ -139,6 +139,9 @@ Domoticz.prototype.getScenes = function(){
 Domoticz.prototype.checkSceneStatus = function(sceneId){
     var match = true;
     var scene = this.scenes[sceneId];
+    if(!scene.devices){
+        return null;
+    }
     for (var i = 0; i < scene.devices.length; i++){
         var device = scene.devices[i];
         if(this.devices[device.idx].on != device.on){
@@ -170,8 +173,7 @@ Domoticz.prototype.setDeviceStatus = function(deviceId, command){
     for(var key in command){
         this.devices[deviceId][key] = command[key];
     }
-    this.sendCommand(command, deviceId
-    );
+    this.sendCommand(command, deviceId);
 }
 
 Domoticz.prototype.toggleScene = function(sceneId){
@@ -181,6 +183,13 @@ Domoticz.prototype.toggleScene = function(sceneId){
             sceneOn : true,
         }, sceneId
         );
+        this.scenes[sceneId].devices.map(function(device){
+            var deviceId = device.idx;
+            this.devices[deviceId].on = device.on;
+        }.bind(this));
+        for(var key in this.scenes){
+            this.checkSceneStatus(key);
+        }
     } else {
         this.scenes[sceneId].on = false;
         var scene = this.scenes[sceneId];

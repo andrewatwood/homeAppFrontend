@@ -35,7 +35,8 @@ function size(){
     //Set scene wrapper width
     $('.scenes').each(function(){
         var columnCount = Math.ceil($(this).children('.action.scene').length/2)
-        var totalWidth = 20 + columnCount*longWidth + 55;
+        var factor = columnCount*longWidth ? columnCount*longWidth : 3;
+        var totalWidth = 20 + factor + 44;
         $(this).width(totalWidth);
     });
 }

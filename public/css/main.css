@@ -111,7 +111,8 @@ h3 {
     width: 30px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
-    margin: 0 12px 0 0; }
+    margin: 0 12px 0 0;
+    cursor: pointer; }
     .top-controls .button.right {
       margin: 0 0 0 12px;
       float: right; }
