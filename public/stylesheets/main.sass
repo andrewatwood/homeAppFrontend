@@ -122,6 +122,13 @@ h3
         &.edit
             width: 72px
         cursor: pointer
+        &:hover
+            background-color: rgba(darken(white, 5%), 0.8)
+        img
+            height: 12px
+            width: auto
+            display: block
+            margin: 9px auto 0px
     .room-title-small
         display: inline-block
         vertical-align: top
@@ -138,8 +145,7 @@ h3
 
 .scenes-wrapper
     margin-left: -20px
-    padding-left: 20px
-    width: calc(100% + 20px)
+    width: calc(100% + 40px)
     max-height: 200px
     margin-bottom: 25px
     white-space: nowrap
@@ -153,6 +159,7 @@ h3
     width: 800px
     height: 140px
     max-height: 160px
+    margin: 0 20px
     white-space: normal
 
 .accessories
@@ -170,11 +177,13 @@ h3
     user-select: none
     cursor: pointer
     &.inactive
-        //-webkit-backdrop-filter: blur(20px)
+        -webkit-backdrop-filter: blur(15px)
         background: rgba(white,0.8)
         color: lighten(black,35%)
         .status
             color: lighten(black, 55%)
+        &:hover
+            background-color: rgba(darken(white, 5%), 0.8)
 
 .accessory
     width: 105/345 * (100%) //105px

@@ -118,6 +118,13 @@ h3 {
       float: right; }
     .top-controls .button.edit {
       width: 72px; }
+    .top-controls .button:hover {
+      background-color: rgba(242, 242, 242, 0.8); }
+    .top-controls .button img {
+      height: 12px;
+      width: auto;
+      display: block;
+      margin: 9px auto 0px; }
   .top-controls .room-title-small {
     display: inline-block;
     vertical-align: top;
@@ -135,8 +142,7 @@ h3 {
 
 .scenes-wrapper {
   margin-left: -20px;
-  padding-left: 20px;
-  width: calc(100% + 20px);
+  width: calc(100% + 40px);
   max-height: 200px;
   margin-bottom: 25px;
   white-space: nowrap;
@@ -155,6 +161,7 @@ h3 {
   width: 800px;
   height: 140px;
   max-height: 160px;
+  margin: 0 20px;
   white-space: normal; }
 
 .accessories {
@@ -176,10 +183,13 @@ h3 {
           user-select: none;
   cursor: pointer; }
   .action.inactive {
+    -webkit-backdrop-filter: blur(15px);
     background: rgba(255, 255, 255, 0.8);
     color: #595959; }
     .action.inactive .status {
       color: #8c8c8c; }
+    .action.inactive:hover {
+      background-color: rgba(242, 242, 242, 0.8); }
 
 .accessory {
   width: 30.4347826087%;

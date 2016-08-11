@@ -18,7 +18,8 @@ Domoticz.prototype.init = function(){
 Domoticz.prototype.getRooms = function(){
     var deferred = $.Deferred();
     var url = this.server + '/json.htm?type=plans&order=name&used=true';
-    var rooms = {};
+    var rooms = {
+    };
     $.get(
         url,
         function(data){
@@ -55,6 +56,7 @@ Domoticz.prototype.getDevices = function(){
             }
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
+                console.log(result);
                 if(result.Type == 'Scene'){
                     continue
                 }
@@ -62,6 +64,14 @@ Domoticz.prototype.getDevices = function(){
                 device.name = result.Name;
                 device.idx = result.idx;
                 device.status = result.Status;
+                if(result.PlanID == 0 && !this.rooms[0]){
+                    var defaultRoom = {
+                        name : 'Default Room',
+                        filename : 'default',
+                        scenes : []
+                    }
+                    this.rooms[0] = defaultRoom;
+                }
                 device.location = this.rooms[result.PlanID];
                 device.location.id = result.PlanID;
                 if (device.status != 'Off'){
@@ -227,7 +237,7 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
 var app = new Vue({
     el: '#app',
     data: {
-        server : new Domoticz('http://andrews-macbook-pro.local:8080'),
+        server : new Domoticz('http://192.168.0.51:8080'),
         showRoomPicker : false,
         currentRoom : 2
     },

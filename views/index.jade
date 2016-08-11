@@ -5,6 +5,7 @@ block content
     //, v-bind:style="{ backgroundImage: 'url(/images/rooms/' + room.filename + '.jpg),' + 'url(/images/rooms/' + room.filename + '.png)' }")
     .top-controls
       .button(v-on:click='toggleRoomPicker()')
+        img(src='/images/icons/list.svg')
       .room-title-small.hidden {{room.name}}
       .button.right
       .button.right.edit
@@ -14,8 +15,8 @@ block content
         //h2 Living Room light on.
           br 
           |2 fans on.
-        h3 Scenes
-        .scenes-wrapper
+        h3(v-if='room.scenes.length') Scenes
+        .scenes-wrapper(v-if='room.scenes.length')
           .scenes
             .action.scene(v-for='sceneId in room.scenes', v-bind:class="{ 'inactive': !server.scenes[sceneId].on }", v-on:click="toggleScene(sceneId)", idx="{{sceneId}}")
               .icon

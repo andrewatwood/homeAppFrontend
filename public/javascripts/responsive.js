@@ -36,7 +36,7 @@ function size(){
     $('.scenes').each(function(){
         var columnCount = Math.ceil($(this).children('.action.scene').length/2)
         var factor = columnCount*longWidth ? columnCount*longWidth : 3;
-        var totalWidth = factor + 36 + 2*($('#container').width()-325)/50;
+        var totalWidth = factor + 40; //+ 36 + 2*($('#container').width()-325)/50;
         $(this).width(totalWidth);
     });
 }
