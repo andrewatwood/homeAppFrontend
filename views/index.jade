@@ -7,7 +7,8 @@ block content
       .button(v-on:click='toggleRoomPicker()')
         img(src='/images/icons/list.svg')
       .room-title-small.hidden {{room.name}}
-      .button.right
+      .button.right(v-on:click='refreshDevices()')
+        i.fa.fa-refresh
       .button.right.edit
     .room-title {{room.name}}
     .scroll

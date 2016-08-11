@@ -4,6 +4,8 @@ function Domoticz(server){
     this.rooms = {};
     this.devices = {};
     this.scenes = {};
+    this.inProgress = false;
+    this.updateInterval = 5 //seconds;
     this.init();
 }
 
@@ -13,6 +15,9 @@ Domoticz.prototype.init = function(){
             init();
         });
     });
+    setInterval(function(){ 
+        this.getDevices() 
+    }.bind(this), this.updateInterval * 1000)
 }
 
 Domoticz.prototype.getRooms = function(){
@@ -44,6 +49,8 @@ Domoticz.prototype.getRooms = function(){
 }
 
 Domoticz.prototype.getDevices = function(){
+    console.log('Getting devices');
+    this.inProgress = true;
     var deferred = $.Deferred();
     var url = this.server + '/json.htm?type=devices&filter=light&used=true&order=Name';
     var devices = {};
@@ -94,6 +101,7 @@ Domoticz.prototype.getDevices = function(){
                 devices[device.idx] = device;
             }
             this.devices = devices;
+            this.inProgress = false;
             deferred.resolve();
             return true;
         }.bind(this)
@@ -244,12 +252,69 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
     }
 }
 
+Domoticz.prototype.updateDevices = function(){
+    var deferred = $.Deferred();
+    var url = this.server + '/json.htm?type=devices&filter=light&used=true&order=Name';
+    var devices = {};
+    $.get(
+        url,
+        function(data){
+            if(data.status != 'OK'){
+                deferred.reject();
+                return null;
+            }
+            for( var i = 0; i < data.result.length; i++){
+                var result = data.result[i];
+                if(result.Type == 'Scene'){
+                    continue
+                }
+                device.name = result.Name;
+                device.idx = result.idx;
+                device.status = result.Status;
+                //Set icon type
+                if(device.name.toLowerCase().indexOf('fan') > -1){
+                    device.icon = 'fan';
+                } else {
+                    device.icon = 'lightbulb';
+                }
+                if(result.PlanID == 0 && !this.rooms[0]){
+                    var defaultRoom = {
+                        name : 'Default Room',
+                        filename : 'default',
+                        scenes : []
+                    }
+                    this.rooms[0] = defaultRoom;
+                }
+                //Check for dimmer
+                if(result.SwitchType == 'Dimmer'){
+                    device.dimmer = true;
+                    device.level = result.Level;
+                    device.maxLevel = result.MaxDimLevel; 
+                    console.log(device);
+                }
+                device.location = this.rooms[result.PlanID];
+                device.location.id = result.PlanID;
+                if (device.status != 'Off'){
+                    device.on = true;
+                } else {
+                    device.on = false;
+                }
+                devices[device.idx] = device;
+            }
+            this.devices = devices;
+            deferred.resolve();
+            return true;
+        }.bind(this)
+    );
+    return deferred;
+}
+
 
 //Vue basics
 var app = new Vue({
     el: '#app',
     data: {
-        server : new Domoticz('http://andrews-macbook-pro.local:8080'),
+        server : new Domoticz('http://192.168.0.51:8080'),
         showRoomPicker : false,
         currentRoom : 2,
         bigDevice : {}
@@ -309,6 +374,9 @@ var app = new Vue({
             console.log('set %d to bigDevice', deviceId)
             this.bigDevice = device;
             $('#big-control').removeClass('hidden');
+        },
+        refreshDevices : function(){
+            this.server.getDevices();
         }
     }
 });

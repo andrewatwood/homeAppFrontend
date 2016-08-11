@@ -15,7 +15,8 @@ html
       .menu-wrapper
         .menu
           .option(v-for='(id, room) in server.rooms', v-on:click='setRoom(id)') {{room.name}}
-            .select(v-show='currentRoom == id') <i class="fa fa-check"></i> 
+            .select(v-show='currentRoom == id')
+              i.fa.fa-check 
           .option.cancel(v-on:click='toggleRoomPicker()') Cancel
     #big-control.hidden
       .big-control-wrapper
