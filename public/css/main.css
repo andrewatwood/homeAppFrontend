@@ -136,7 +136,7 @@ h3 {
 .scenes-wrapper {
   margin-left: -20px;
   padding-left: 20px;
-  width: 120vw;
+  width: calc(100% + 20px);
   max-height: 200px;
   margin-bottom: 25px;
   white-space: nowrap;
@@ -153,7 +153,6 @@ h3 {
 
 .scenes {
   width: 800px;
-  padding-right: 60px;
   height: 140px;
   max-height: 160px;
   white-space: normal; }
@@ -187,21 +186,6 @@ h3 {
   padding-bottom: 30.4347826087%;
   font-size: 0.85em;
   position: relative; }
-  @media screen and (min-width: 132px) and (max-width: 227px) {
-    .accessory {
-      width: 91.3043478261%;
-      padding-bottom: 91.3043478261%;
-      margin: 4.347826087%; } }
-  @media screen and (min-width: 228px) and (max-width: 323px) {
-    .accessory {
-      width: 45.652173913%;
-      padding-bottom: 45.652173913%;
-      margin: 2.1739130435%; } }
-  @media screen and (min-width: 324px) and (max-width: 419px) {
-    .accessory {
-      width: 30.4347826087%;
-      padding-bottom: 30.4347826087%;
-      margin: 1.4492753623%; } }
   @media screen and (min-width: 420px) and (max-width: 515px) {
     .accessory {
       width: 22.8260869565%;
@@ -247,9 +231,12 @@ h3 {
       width: 7.6086956522%;
       padding-bottom: 7.6086956522%;
       margin: 0.3623188406%; } }
+  @media screen and (max-width: 340px) {
+    .accessory {
+      font-size: 0.75em; } }
   .accessory .label {
     position: absolute;
-    bottom: 10px;
+    bottom: 7px;
     max-width: 100%; }
     .accessory .label .room, .accessory .label .name, .accessory .label .status {
       margin-left: 10px;

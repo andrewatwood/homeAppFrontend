@@ -139,7 +139,7 @@ h3
 .scenes-wrapper
     margin-left: -20px
     padding-left: 20px
-    width: 120vw
+    width: calc(100% + 20px)
     max-height: 200px
     margin-bottom: 25px
     white-space: nowrap
@@ -151,7 +151,6 @@ h3
     -webkit-overflow-scrolling: touch
 .scenes
     width: 800px
-    padding-right: 60px
     height: 140px
     max-height: 160px
     white-space: normal
@@ -180,7 +179,7 @@ h3
 .accessory
     width: 105/345 * (100%) //105px
     padding-bottom: 105/345 * (100%)
-    @for $count from 1 through 12
+    @for $count from 4 through 12
         $min: (96*$count + 36) * 1px
         $max: (96*($count+1) + 35) * 1px
         @if $count == 12
@@ -191,10 +190,12 @@ h3
             padding-bottom: 105/$total * (100%)
             margin: 5/$total * (100%)
     font-size: 0.85em
+    @media screen and (max-width: 340px)
+        font-size: 0.75em
     position: relative
     .label
         position: absolute
-        bottom: 10px
+        bottom: 7px
         max-width: 100%
         .room, .name, .status
             margin-left: 10px

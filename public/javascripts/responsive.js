@@ -36,7 +36,7 @@ function size(){
     $('.scenes').each(function(){
         var columnCount = Math.ceil($(this).children('.action.scene').length/2)
         var factor = columnCount*longWidth ? columnCount*longWidth : 3;
-        var totalWidth = 20 + factor + 44;
+        var totalWidth = factor + 36 + 2*($('#container').width()-325)/50;
         $(this).width(totalWidth);
     });
 }
@@ -55,14 +55,14 @@ function bind(){
             titleHidden[room] = true;
             bigTitle.addClass('hidden');
             littleTitle.removeClass('hidden');
-            $(this).toggleClass('border');
+            $(this).addClass('border');
             }
         } else {
             if(titleHidden[room]){
             titleHidden[room] = false;
             bigTitle.removeClass('hidden');
             littleTitle.addClass('hidden');
-            $(this).toggleClass('border');
+            $(this).removeClass('border');
             }
     }
     });
