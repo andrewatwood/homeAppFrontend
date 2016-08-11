@@ -25,7 +25,7 @@ block content
               .title {{server.scenes[sceneId].name}}
         h3 Accessories
         .accessories
-          .action.accessory(v-for='device in server.devices | filterBy id in "location.id"', v-bind:class="{ 'inactive': !device.on }", idx="{{device.idx}}")
+          .action.accessory(v-for='device in server.devices | filterBy id in "location.id"', v-bind:class="{ 'inactive': !device.on }", idx="{{device.idx}}", v-touch:tap="toggleDevice(device.idx)")
             .icon
               img(v-show='device.on' src='/images/icons/{{device.icon}}.svg')
               img(v-show='!device.on' src='/images/icons/{{device.icon}}-inactive.svg')

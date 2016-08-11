@@ -67,27 +67,45 @@ function bind(){
         }
     });
 
+    pressThreshold = 500;
+
+    function startAccessoryTouch(e){
+        touchStart = e.timeStamp;
+        longPress = setTimeout(function(){
+            console.log('long press blehheheh');
+            var deviceId = $(this).attr('idx');
+            console.log(deviceId);
+            app.showDeviceControl(deviceId);
+        }.bind(this), pressThreshold)
+    }
+
+    function endAccessoryTouch(e){
+        clearTimeout(longPress);
+        if(e.timeStamp - touchStart < pressThreshold){
+            console.log('click');
+            var deviceId = $(this).attr('idx');
+            app.toggleDevice(deviceId);
+        }
+    }
+
+    $('.accessory').mousedown(startAccessoryTouch);
+    $('.accessory').touchstart(startAccessoryTouch);
+
+    $('.accessory').mouseup(endAccessoryTouch);
+    $('.accessory').touchend(startAccessoryTouch);
+
     $('.switch').click(function(e){
         e.stopPropagation();
         console.log('switch click');
         //$(this).children('.toggle').toggleClass('off');
     })
-    ignoreTouch = false;
-    $('#big-control').click(function(){
-        if(!ignoreTouch){
-            console.log('clicked black stuff');
-            $(this).addClass('hidden');
-        }
-    });
 
-    $('.accessory').longpress(
-        function(e){
-            var deviceId = $(this).attr('idx');
-            app.showDeviceControl(deviceId);
-        }, function(e){
-            var deviceId = $(this).attr('idx');
-            app.server.toggleDevice(deviceId);
-        }, 650);
+    ignoreTouch = false;
+
+    $('#big-control').click(function(){
+        console.log('clicked black stuff');
+        $(this).addClass('hidden');
+    });
 }
 
 function init(){
