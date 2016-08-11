@@ -251,7 +251,8 @@ var app = new Vue({
     data: {
         server : new Domoticz('http://192.168.0.51:8080'),
         showRoomPicker : false,
-        currentRoom : 2
+        currentRoom : 2,
+        bigDevice : null
     },
     methods: {
         toggleDevice : function(deviceId) {
@@ -279,18 +280,36 @@ var app = new Vue({
         },
         filterScenes : function(scenes, id){
         },
-        getReadableStatus : function(device){
+        getReadableStatus : function(device, long=false){
+            var status = '';
             if(device.dimmer && device.on){
                 var percent = Math.round(100*device.level/device.maxLevel);
                 console.log('dimmer: %d', percent)
                 if(percent == 0 || percent == 100){
-                    return device.on ? 'On' : 'Off'
+                    status= device.on ? 'On' : 'Off'
                 } else {
-                    return percent + "%"
+                    status= percent + "%"
                 }
             } else {
-                return device.on ? 'On' : 'Off'
+                status= device.on ? 'On' : 'Off'
             }
+            if(long){
+                if(status.indexOf('%') > -1){
+                    status = 'Set to ' + status; 
+                } else {
+                    status = 'Powered ' + status;
+                }
+            }
+            return status;
+        },
+        showDeviceControl : function(deviceId){
+            ignoreTouch = true;
+            var device = this.server.devices[deviceId];
+            this.bigDevice = device;
+            $('#big-control').removeClass('hidden');
+            setTimeout(function(){
+                ignoreTouch = false;
+            },250);
         }
     }
 });

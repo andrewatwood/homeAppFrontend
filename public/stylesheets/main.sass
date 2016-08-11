@@ -304,5 +304,56 @@ h3
                 &:nth-last-of-type(2)
                     border-radius: 0 0 10px 10px
                     border-bottom: 0px solid
-                
-
+#big-control
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgba(black, 0.4)
+    opacity: 1
+    -webkit-backdrop-filter: blur(15px)
+    z-index: 10
+    transition: opacity 0.2s, top 0s
+    &.hidden
+        opacity: 0
+        top: 15000px
+        -webkit-backdrop-filter: blur(0px)
+        transition: opacity 0.2s, top 0s linear 0.2s
+        .toggle
+            transition: all 0s !important
+    .big-control-wrapper
+        position: relative
+        width: 100%
+        max-width: 220px
+        height: 100%
+        max-height: 400px
+        img
+            display: block
+            margin: 15px auto
+            height: 45px
+            width: auto
+        .status
+            text-align: center
+        .switch
+            position: absolute
+            top: 120px
+            bottom: 0px
+            left: 0px
+            right: 0px
+            background: rgba(white,0.5)
+            border-radius: 40px
+            .toggle
+                transition: all 0.1s ease-out
+                position: absolute
+                top: 5px
+                left: 5px
+                right: 5px
+                height: calc(50% - 5px)
+                background: white
+                border-radius: 35px
+                &.off
+                    top: 50%

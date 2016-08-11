@@ -64,8 +64,30 @@ function bind(){
             littleTitle.addClass('hidden');
             $(this).removeClass('border');
             }
-    }
+        }
     });
+
+    $('.switch').click(function(e){
+        e.stopPropagation();
+        console.log('switch click');
+        //$(this).children('.toggle').toggleClass('off');
+    })
+    ignoreTouch = false;
+    $('#big-control').click(function(){
+        if(!ignoreTouch){
+            console.log('clicked black stuff');
+            $(this).addClass('hidden');
+        }
+    });
+
+    $('.accessory').longpress(
+        function(e){
+            var deviceId = $(this).attr('idx');
+            app.showDeviceControl(deviceId);
+        }, function(e){
+            var deviceId = $(this).attr('idx');
+            app.server.toggleDevice(deviceId);
+        }, 650);
 }
 
 function init(){

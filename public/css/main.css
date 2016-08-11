@@ -357,3 +357,70 @@ h3 {
         #options .menu-wrapper .menu .option:nth-last-of-type(2) {
           border-radius: 0 0 10px 10px;
           border-bottom: 0px solid; }
+
+#big-control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 10;
+  -webkit-transition: opacity 0.2s, top 0s;
+  transition: opacity 0.2s, top 0s; }
+  #big-control.hidden {
+    opacity: 0;
+    top: 15000px;
+    -webkit-backdrop-filter: blur(0px);
+    -webkit-transition: opacity 0.2s, top 0s linear 0.2s;
+    transition: opacity 0.2s, top 0s linear 0.2s; }
+    #big-control.hidden .toggle {
+      -webkit-transition: all 0s !important;
+      transition: all 0s !important; }
+  #big-control .big-control-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    height: 100%;
+    max-height: 400px; }
+    #big-control .big-control-wrapper img {
+      display: block;
+      margin: 15px auto;
+      height: 45px;
+      width: auto; }
+    #big-control .big-control-wrapper .status {
+      text-align: center; }
+    #big-control .big-control-wrapper .switch {
+      position: absolute;
+      top: 120px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 40px; }
+      #big-control .big-control-wrapper .switch .toggle {
+        -webkit-transition: all 0.1s ease-out;
+        transition: all 0.1s ease-out;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        height: calc(50% - 5px);
+        background: white;
+        border-radius: 35px; }
+        #big-control .big-control-wrapper .switch .toggle.off {
+          top: 50%; }
