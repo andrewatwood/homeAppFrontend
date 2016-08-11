@@ -64,6 +64,11 @@ Domoticz.prototype.getDevices = function(){
                 device.name = result.Name;
                 device.idx = result.idx;
                 device.status = result.Status;
+                if(device.name.toLowerCase().indexOf('fan') > -1){
+                    device.icon = 'fan';
+                } else {
+                    device.icon = 'lightbulb';
+                }
                 if(result.PlanID == 0 && !this.rooms[0]){
                     var defaultRoom = {
                         name : 'Default Room',
