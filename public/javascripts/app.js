@@ -56,7 +56,6 @@ Domoticz.prototype.getDevices = function(){
             }
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
-                console.log(result);
                 if(result.Type == 'Scene'){
                     continue
                 }
@@ -64,6 +63,7 @@ Domoticz.prototype.getDevices = function(){
                 device.name = result.Name;
                 device.idx = result.idx;
                 device.status = result.Status;
+                //Set icon type
                 if(device.name.toLowerCase().indexOf('fan') > -1){
                     device.icon = 'fan';
                 } else {
@@ -76,6 +76,13 @@ Domoticz.prototype.getDevices = function(){
                         scenes : []
                     }
                     this.rooms[0] = defaultRoom;
+                }
+                //Check for dimmer
+                if(result.SwitchType == 'Dimmer'){
+                    device.dimmer = true;
+                    device.level = result.Level;
+                    device.maxLevel = result.MaxDimLevel; 
+                    console.log(device);
                 }
                 device.location = this.rooms[result.PlanID];
                 device.location.id = result.PlanID;
@@ -271,6 +278,19 @@ var app = new Vue({
             //this.showRoomPicker = !this.showRoomPicker;
         },
         filterScenes : function(scenes, id){
+        },
+        getReadableStatus : function(device){
+            if(device.dimmer && device.on){
+                var percent = Math.round(100*device.level/device.maxLevel);
+                console.log('dimmer: %d', percent)
+                if(percent == 0 || percent == 100){
+                    return device.on ? 'On' : 'Off'
+                } else {
+                    return percent + "%"
+                }
+            } else {
+                return device.on ? 'On' : 'Off'
+            }
         }
     }
 });

@@ -32,4 +32,4 @@ block content
             .label
               .room {{device.location.name}}
               .name {{device.name}}
-              .status {{device.on ? 'On' : 'Off'}}
+              .status {{getReadableStatus(device)}}

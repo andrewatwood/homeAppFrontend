@@ -6,6 +6,9 @@
   font-family: "San Fransisco";
   src: url("/fonts/San Francisco Display Bold.ttf") format("truetype");
   font-weight: bold; }
+::-webkit-scrollbar {
+  display: none; }
+
 body {
   font-family: "San Fransisco";
   font-weight: bold;
@@ -16,7 +19,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow-x: scroll;
+  overflow-x: hidden;
   overflow-y: hidden;
   background-attachment: fixed;
   -webkit-touch-callout: none;
@@ -106,6 +109,7 @@ h3 {
   padding: 0 17px;
   line-height: 30px; }
   .top-controls .button {
+    -webkit-backdrop-filter: blur(15px);
     display: inline-block;
     height: 30px;
     width: 30px;

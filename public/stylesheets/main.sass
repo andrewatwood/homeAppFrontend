@@ -18,6 +18,9 @@ $room-transition-shift: 4px
 
 @mixin breakpoint()
 
+::-webkit-scrollbar
+    display: none
+
 body
     font-family: 'San Fransisco'
     font-weight: bold
@@ -28,12 +31,11 @@ body
     left: 0
     right: 0
     bottom: 0
-    overflow-x: scroll
+    overflow-x: hidden
     overflow-y: hidden
     background-attachment: fixed
     -webkit-touch-callout: none /* iOS Safari */
     user-select: none
-
 #container
     position: absolute
     top: 0
@@ -109,7 +111,7 @@ h3
     padding: 0 $side-padding + 2
     line-height: 30px
     .button
-        //-webkit-backdrop-filter: blur(20px)
+        -webkit-backdrop-filter: blur(15px)
         display: inline-block
         height: 30px
         width: 30px
