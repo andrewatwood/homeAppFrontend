@@ -69,38 +69,47 @@ function bind(){
 
     pressThreshold = 500;
 
-    function startAccessoryTouch(e){
+    function startAccessoryTouch(e, deviceId){
+        if(deviceId == undefined){
+            var deviceId = $(this).attr('idx');
+        }
         touchStart = e.timeStamp;
         longPress = setTimeout(function(){
             console.log('long press blehheheh');
-            var deviceId = $(this).attr('idx');
-            console.log(deviceId);
             app.showDeviceControl(deviceId);
-        }.bind(this), pressThreshold)
+        }.bind(this, deviceId), pressThreshold)
     }
 
-    function endAccessoryTouch(e){
+    function endAccessoryTouch(e, deviceId){
+        if(deviceId == undefined){
+            var deviceId = $(this).attr('idx');
+        }
         clearTimeout(longPress);
         if(e.timeStamp - touchStart < pressThreshold){
             console.log('click');
-            var deviceId = $(this).attr('idx');
             app.toggleDevice(deviceId);
         }
     }
 
     $('.accessory').mousedown(startAccessoryTouch);
-    $('.accessory').touchstart(startAccessoryTouch);
+    $('.accessory').on("touchstart", function(e){
+        e.preventDefault();
+        var deviceId = e.currentTarget.getAttribute('idx');
+        startAccessoryTouch(e, deviceId);
+    }.bind(this));
 
     $('.accessory').mouseup(endAccessoryTouch);
-    $('.accessory').touchend(startAccessoryTouch);
+    $('.accessory').on("touchend", function(e){
+        e.preventDefault();
+        var deviceId = e.currentTarget.getAttribute('idx');
+        endAccessoryTouch(e, deviceId);
+    }.bind(this));
 
     $('.switch').click(function(e){
         e.stopPropagation();
         console.log('switch click');
         //$(this).children('.toggle').toggleClass('off');
     })
-
-    ignoreTouch = false;
 
     $('#big-control').click(function(){
         console.log('clicked black stuff');

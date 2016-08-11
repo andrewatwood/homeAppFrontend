@@ -252,11 +252,11 @@ var app = new Vue({
         server : new Domoticz('http://andrews-macbook-pro.local:8080'),
         showRoomPicker : false,
         currentRoom : 2,
-        bigDevice : null
+        bigDevice : {}
     },
     methods: {
         toggleDevice : function(deviceId) {
-            console.log('toggle device');
+            console.log('toggle device %d', deviceId);
             this.server.toggleDevice(deviceId);
             this.server.updateScenes(deviceId);
         },
@@ -304,8 +304,9 @@ var app = new Vue({
             return status;
         },
         showDeviceControl : function(deviceId){
-            console.log('set %d to bigDevice', deviceId)
             var device = this.server.devices[deviceId];
+            this.bigDevice.on = device.on
+            console.log('set %d to bigDevice', deviceId)
             this.bigDevice = device;
             $('#big-control').removeClass('hidden');
         }
