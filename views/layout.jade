@@ -4,9 +4,7 @@ html
     base(href="/")
     meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
     meta(name='apple-mobile-web-app-capable', content='yes')
-    script(src='javascripts/vue.js')
-    script(src='javascripts/jquery-3.1.0.min.js')
-    script(src='javascripts/responsive.js')
+    
     title Home Mockup
     link(rel='stylesheet', href='/css/main.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
@@ -20,12 +18,11 @@ html
           .option.cancel(v-on:click='toggleRoomPicker()') Cancel
     #big-control.hidden
       .big-control-wrapper
-        img(v-show='bigDevice.on' src='/images/icons/{{bigDevice.icon}}.svg')
-        img(v-show='!bigDevice.on' src='/images/icons/{{bigDevice.icon}}-inactive.svg')
+        img(v-bind:src='getDeviceIcon(bigDevice.idx)')
         .status {{getReadableStatus(bigDevice, true)}}
         .switch
           .toggle(v-on:click="toggleDevice(bigDevice.idx)",v-bind:class="{ 'off': !bigDevice.on }")
     #container
       block content
-    script(src='javascripts/app.js')
+      script(src='javascripts/min/app-min.js')
     //script(src='javascripts/scrollsnap-polyfill.bundled.js')

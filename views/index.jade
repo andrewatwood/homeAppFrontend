@@ -9,7 +9,7 @@ block content
       .room-title-small.hidden {{room.name}}
       .button.right(v-on:click='refreshDevices()')
         i.fa.fa-refresh
-      .button.right.edit
+      //.button.right.edit
     .room-title {{room.name}}
     .scroll
       .wrapper
@@ -26,10 +26,9 @@ block content
               .title {{server.scenes[sceneId].name}}
         h3 Accessories
         .accessories
-          .action.accessory(v-for='device in server.devices | filterBy id in "location.id"', v-bind:class="{ 'inactive': !device.on }", idx="{{device.idx}}", v-touch:tap="toggleDevice(device.idx)")
+          .action.accessory(v-for='device in server.devices | filterBy id in "location.id"', v-bind:class="{ 'inactive': !device.on }", idx="{{device.idx}}")
             .icon
-              img(v-show='device.on' src='/images/icons/{{device.icon}}.svg')
-              img(v-show='!device.on' src='/images/icons/{{device.icon}}-inactive.svg')
+              img(v-bind:src='getDeviceIcon(device.idx)')
             .label
               .room {{device.location.name}}
               .name {{device.name}}

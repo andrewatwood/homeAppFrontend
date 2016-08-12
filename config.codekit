@@ -13,6 +13,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 0
 		},
+	"\/Domoticz.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/Domoticz.js",
+		"outputAbbreviatedPath": "\/min\/Domoticz-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 0
+		},
 	"\/min\/Domoticz-min.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -34,17 +45,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1
-		},
-	"\/public\/backend\/Domoticz.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 1,
-		"inputAbbreviatedPath": "\/public\/backend\/Domoticz.js",
-		"outputAbbreviatedPath": "\/public\/backend\/min\/Domoticz-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 0
 		},
 	"\/public\/css\/font-awesome.min.css": {
 		"fileType": 16,
@@ -176,14 +176,25 @@
 		},
 	"\/public\/javascripts\/app.js": {
 		"fileType": 64,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/public\/javascripts\/app.js",
 		"outputAbbreviatedPath": "\/public\/javascripts\/min\/app-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
+		"outputStyle": 2,
 		"syntaxCheckerStyle": 0
+		},
+	"\/public\/javascripts\/Domoticz.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/public\/javascripts\/Domoticz.js",
+		"outputAbbreviatedPath": "\/public\/javascripts\/min\/Domoticz-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/public\/javascripts\/jquery-3.1.0.min.js": {
 		"fileType": 64,
@@ -202,6 +213,17 @@
 		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/public\/javascripts\/jquery.mobile.custom.min.js",
 		"outputAbbreviatedPath": "\/public\/javascripts\/min\/jquery.mobile.custom.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/javascripts\/min\/app-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/javascripts\/min\/app-min.js",
+		"outputAbbreviatedPath": "\/public\/javascripts\/min\/min\/app-min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -314,6 +336,32 @@
 	],
 "lastSavedByUser": "Andrew Atwood",
 "manualImportLinks": {
+	"\/public\/javascripts\/app.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/public\/javascripts\/vue.js",
+			"position": 0,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/public\/javascripts\/jquery-3.1.0.min.js",
+			"position": 1,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/public\/javascripts\/responsive.js",
+			"position": 2,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/public\/javascripts\/Domoticz.js",
+			"position": 3,
+			"type": 0
+			}
+		]
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",

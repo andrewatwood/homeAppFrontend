@@ -45,6 +45,8 @@ function bind(){
     $( window ).resize(function(){
         size();
     });
+
+    //Vertical scroll - room title animation
     $('.scroll').scroll(function(){
         var bigTitle = $(this).siblings('.room-title');
         var littleTitle = $(this).siblings('.top-controls').children('.room-title-small');
@@ -66,7 +68,7 @@ function bind(){
             }
         }
     });
-
+    
     pressThreshold = 500;
 
     function startAccessoryTouch(e, deviceId){
@@ -120,12 +122,15 @@ function bind(){
 }
 
 function init(){
-accessories = $('.action.accessory');
-scenes = $('.action.scene');
+    accessories = $('.action.accessory');
+    scenes = $('.action.scene');
+    scrolTimeout = false;
 
-scrollThreshold = 25
-titleHidden = {}
+    scrollThreshold = 25
+    titleHidden = {}
 
-size();
-bind();
+    size();
+    bind();
+
+    app.currentRoom = Object.keys(app.server.rooms).shift()
 }
