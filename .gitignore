@@ -42,3 +42,4 @@ config
 
 config.codekit*
 .codekit-cache
+*.sassc
