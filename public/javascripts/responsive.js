@@ -107,11 +107,17 @@ function bind(){
         console.log('starting position: %d', startPos);
         dimmerClick = true;
         $(document).mouseup(endDimmerTouch);
+        $(document).on('touchend',endDimmerTouch);
         $('#dimmer').mousemove(moveDimmerTouch);
+        $('#dimmer').on('touchmove',moveDimmerTouch);
     }
 
     function moveDimmerTouch(e){
-        diffY = startPos - e.pageY;
+        if(e.originalEvent.touches){
+            diffY = startPos - e.originalEvent.touches[0].pageY;
+        } else {
+            diffY = startPos - e.pageY;
+        }
         if( Math.abs(diffY) > 5 ){
             dimmerClick = false;
         }
@@ -138,18 +144,18 @@ function bind(){
             app.server.devices[app.bigDevice.idx].on = true;
         }
         app.server.devices[app.bigDevice.idx].level = newLevel;
-        console.log('moving at %s', newPercent);
     }
 
     function endDimmerTouch(e){
         var device = app.server.devices[app.bigDevice.idx];
         $('#dimmer').unbind('mousemove');
+        $('#dimmer').unbind('touchmove');
         $(document).unbind('mouseup',endDimmerTouch);
+        $(document).unbind('touchend',endDimmerTouch);
         var command = {};
         if(dimmerClick){
             var localY = e.pageY - $('#dimmer').offset().top;
             var percent = (1 - (localY/($('#dimmer').height() - 20) ));
-            console.log('dimmer click at %s', percent);
             if(percent > 0.95){
                 percent = 1;
             }
@@ -158,7 +164,6 @@ function bind(){
             }
             command.brightness = Math.round(percent*100);
         } else {
-            console.log('dimmer slide to %s', newPercent);
             command.brightness = Math.round(newPercent*100);
         }
         app.server.sendCommand(command, app.bigDevice.idx)  
@@ -183,6 +188,7 @@ function bind(){
     });
 
     $('#dimmer').mousedown(startDimmerTouch);
+    $('#dimmer').on('touchstart',startDimmerTouch);
 
     $('#big-control').click(function(){
         console.log('clicked black stuff');

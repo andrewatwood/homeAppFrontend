@@ -260,7 +260,6 @@ Domoticz.prototype.toggleScene = function(sceneId){
 }
 
 Domoticz.prototype.sendCommand = function(command, deviceId){
-    console.log(command, deviceId);
     if('on' in command){
         var cmd = command.on ? 'On' : 'Off';
         var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + this.devices[deviceId].idx + '&switchcmd=' + cmd;
@@ -282,7 +281,7 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
         $.get(
             url,
             function(data){
-                console.log(data);
+                console.log('Response for command on device %d',deviceId,data);
             }
         );
     }
