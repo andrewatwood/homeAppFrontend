@@ -26,7 +26,8 @@ var app = new Vue({
             var offset = $(room).offset().left;
             console.log('Target offset: %d current position: %d', offset, current);
             var screens = Math.abs(offset)/width;
-            $('#container').animate({scrollLeft : current+offset},125*screens);
+            document.getElementById('container').scrollLeft = current+offset;
+            //$('#container').animate({scrollLeft : current+offset},125*screens);
             $('#options').toggleClass('hidden');
         },
         toggleRoomPicker : function() {

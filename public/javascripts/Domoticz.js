@@ -1,7 +1,8 @@
 function Domoticz(server){
     this.server = config.server.indexOf('http') == -1 ? 'http://' + config.server : config.server;
     this.rooms = {};
-    this.devices = {};
+    this.devices = {
+    };
     this.scenes = {};
     this.inProgress = false;
     this.updateInterval = config.update_interval || 30 //seconds;
@@ -11,8 +12,11 @@ function Domoticz(server){
 Domoticz.prototype.init = function(){
     this.getRooms().then(this.getDevices()).then(this.getScenes()).then(function(){
         Vue.nextTick(function(){
-            $(document).click();
             init();
+            document.getElementById('container').scrollLeft = 1;
+            var firstDevice = Object.keys(app.server.devices).shift();
+            app.server.devices[firstDevice] = app.server.devices[firstDevice];
+            document.getElementById('container').scrollLeft = 0;
         });
     });
     setInterval(function(){ 
@@ -23,7 +27,14 @@ Domoticz.prototype.init = function(){
 Domoticz.prototype.getRooms = function(){
     var deferred = $.Deferred();
     var url = this.server + '/json.htm?type=plans&order=name&used=true';
+    var defaultRoom =  {
+        name : 'Default Room',
+        filename : 'default',
+        scenes : [],
+        empty : true
+    }
     var rooms = {
+        0 : defaultRoom
     };
     $.get(
         url,
@@ -37,7 +48,8 @@ Domoticz.prototype.getRooms = function(){
                 rooms[result.idx] = {
                     name : result.Name,
                     filename : result.Name.toLowerCase().replace(/\s+/g, ''),
-                    scenes : []
+                    scenes : [],
+                    empty : true
                 }
             }
             this.rooms = rooms;
@@ -51,7 +63,7 @@ Domoticz.prototype.getRooms = function(){
 Domoticz.prototype.getDevices = function(){
     this.inProgress = true;
     var deferred = $.Deferred();
-    var url = this.server + '/json.htm?type=devices&filter=light&used=true&order=Name';
+    var url = this.server + '/json.htm?type=devices&filter=all&used=true&order=Name';
     var devices = {};
     $.get(
         url,
@@ -62,32 +74,41 @@ Domoticz.prototype.getDevices = function(){
             }
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
-                if(result.Type == 'Scene'){
-                    continue
-                }
                 var device = {};
+                switch (result.Type){
+                    case 'Scene':
+                        continue;
+                    case 'Light/Switch':
+                        if(result.SwitchType == 'Dimmer'){
+                            device.dimmer = true;
+                            device.level = result.Level;
+                            device.maxLevel = result.MaxDimLevel;
+                        }
+                        break; 
+                    case 'Thermostat':
+                        device.setPoint = result.SetPoint;
+                        break;
+                    case 'Temp + Humidity':
+                        device.celsius = result.Data.indexOf('F') > -1;
+                        device.temperature = result.Temp;
+                        console.log(result);
+                        break
+                }
                 device.name = result.Name;
                 device.idx = result.idx;
                 device.status = result.Status;
                 //Set icon type
-                if(device.name.toLowerCase().indexOf('fan') > -1){
+                if(device.name.toLowerCase().indexOf('fan') > -1 || result.Image =="Fan"){
                     device.icon = 'fan';
                 } else {
                     device.icon = 'lightbulb';
                 }
-                if(result.PlanID == 0 && !this.rooms[0]){
-                    var defaultRoom = {
-                        name : 'Default Room',
-                        filename : 'default',
-                        scenes : []
-                    }
-                    this.rooms[0] = defaultRoom;
+                if(result.PlanID == "0" && !this.rooms[0]){
+                    console.log('adding Default Room');
+                    
                 }
-                //Check for dimmer
-                if(result.SwitchType == 'Dimmer'){
-                    device.dimmer = true;
-                    device.level = result.Level;
-                    device.maxLevel = result.MaxDimLevel; 
+                if(this.rooms[result.PlanID].empty){
+                    this.rooms[result.PlanID].empty = false;
                 }
                 device.location = this.rooms[result.PlanID];
                 device.location.id = result.PlanID;
@@ -142,9 +163,12 @@ Domoticz.prototype.getScenes = function(){
                     if(data.status != 'OK' || !data.result){
                         return null;
                     }
+                    console.log(data);
                     var devices = data.result.map(function(device){
                         return {idx : device.DevRealIdx,
-                                on : device.Command!='Off' ? true : false }
+                                on : device.Command!='Off' ? true : false,
+                                level : device.Level 
+                            }
                     });
                     this.scenes[key].devices = devices;
                     devices.map(function(device){
@@ -177,6 +201,10 @@ Domoticz.prototype.checkSceneStatus = function(sceneId){
             match = false;
             break;
         }
+        if('level' in this.devices[device.idx] && this.devices[device.idx].level != device.level){
+            match = false;
+            break;
+        }
     }
     this.scenes[sceneId].on = match;
 }
@@ -192,10 +220,7 @@ Domoticz.prototype.updateScenes = function(deviceId){
 
 Domoticz.prototype.toggleDevice = function(deviceId){
     this.devices[deviceId].on = !this.devices[deviceId].on;
-    this.sendCommand({
-        on : this.devices[deviceId].on
-    }, deviceId
-    );
+    this.sendCommand({ on : this.devices[deviceId].on }, deviceId);
 }
 
 Domoticz.prototype.setDeviceStatus = function(deviceId, command){
@@ -215,6 +240,9 @@ Domoticz.prototype.toggleScene = function(sceneId){
         this.scenes[sceneId].devices.map(function(device){
             var deviceId = device.idx;
             this.devices[deviceId].on = device.on;
+            if('level' in this.devices[deviceId]){
+                this.devices[deviceId].level = device.level;
+            }
         }.bind(this));
         for(var key in this.scenes){
             this.checkSceneStatus(key);
@@ -232,6 +260,7 @@ Domoticz.prototype.toggleScene = function(sceneId){
 }
 
 Domoticz.prototype.sendCommand = function(command, deviceId){
+    console.log(command, deviceId);
     if('on' in command){
         var cmd = command.on ? 'On' : 'Off';
         var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + this.devices[deviceId].idx + '&switchcmd=' + cmd;
@@ -247,10 +276,9 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
         } 
         var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + this.devices[deviceId].idx + '&switchcmd=' + cmd;
     } else if ('sceneOn' in command){
-        var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + deviceId + '&switchcmd=On';
+        var url = this.server + '/json.htm?type=command&param=switchscene&idx=' + deviceId + '&switchcmd=On';
     }
     if(url){
-        console.log(url);
         $.get(
             url,
             function(data){

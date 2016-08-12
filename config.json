@@ -1,7 +1,7 @@
 {
     "server" : "192.168.0.51:8080",
     "type" : "domoticz",
-    "update_interval" : 15,
+    "update_interval" : 60,
     "pretty" : false,
     "display_names" : {
         "homekit_room_lamp" : "Lamp",
@@ -9,5 +9,11 @@
         "Bedroom Ceiling Fan" : "Ceiling Fan",
         "Living Room Lamps" : "Floor Lamps",
         "homekit_desk_fan" : "Fan"
+    },
+    "thermostats" : {
+        "living_room_thermostat" : {
+            "setpoint" : 17,
+            "temperature" : 18
+        }
     }
 }

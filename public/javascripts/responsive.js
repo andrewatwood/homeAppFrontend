@@ -71,10 +71,12 @@ function bind(){
     pressThreshold = 500;
 
     function startAccessoryTouch(e, deviceId){
+        e.preventDefault();
+        e.stopPropagation();
         if(deviceId == undefined){
             var deviceId = $(this).attr('idx');
         }
-        $(this).addClass('hover');
+        //$(this).addClass('hover');
         touchStart = e.timeStamp;
         longPress = setTimeout(function(){
             console.log('long press blehheheh');
@@ -86,7 +88,7 @@ function bind(){
         if(deviceId == undefined){
             var deviceId = $(this).attr('idx');
         }
-        $(this).removeClass('hover');
+        //$(this).removeClass('hover');
         if(longPress){
             clearTimeout(longPress);
         }

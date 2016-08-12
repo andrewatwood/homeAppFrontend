@@ -26,8 +26,8 @@ html
         .status {{getReadableStatus(bigDevice, true)}}
         .switch#toggle(v-show="!bigDevice.dimmer && !bigDevice.themostat", v-on:click="toggleDevice(bigDevice.idx)")
           .toggle(v-bind:class="{ 'off': !getBigDeviceOn() }")
-        .switch#dimmer(v-show="bigDevice.dimmer")
-          .dimmer(v-bind:class="{ 'off' : !getBigDeviceOn() }", v-bind:style="{ height : getDimmerHeight()}")
+        .switch#dimmer(v-show="bigDevice.dimmer || bigDevice.themostat")
+          .dimmer(v-bind:class="{ 'off' : !getBigDeviceOn(), 'temperature' : bigDevice.themostat }", v-bind:style="{ height : getDimmerHeight()}")
     #container
       block content
     script.
