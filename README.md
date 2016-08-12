@@ -13,4 +13,4 @@ HTML/CSS replication of iOS 10's Home.app for use as a custom frontend for home 
 ## Notes
 - Still in early testing - only support switches (On/Off and Dimmer) so far
 - Icon support so far includes fans and lightbulbs *(with lightbulb being the default)*
-
+- Eventually will piggyback off the webservers already running for the various backends like Domoticz, HomeAssistant, and OpenHAB instead of running its own server. Just not there yet.

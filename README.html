@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<h1 id="homeappfrontend">homeAppFrontend</h1>
+
+<p>HTML/CSS replication of iOS 10&#8217;s Home.app for use as a custom frontend for home automation systems</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li>Node.js</li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<ol>
+<li>Clone repo or download zip to your server of choice</li>
+<li><code>cd homeAppFrontend &amp;&amp; npm install</code></li>
+<li>Edit <code>config.json</code> to point to your Domoticz server, and tweak other options as you see fit <em>(for iOS devices, <code>pretty = true</code> will enable a blur filter that can kill smoothness on older devices, so it&#8217;s off by default)</em></li>
+<li>Once all dependencies are taken care of, run <code>npm start</code> inside the root folder and leave the terminal window open. Will run as a daemon soon just haven&#8217;t bothered.</li>
+<li>From any device on your LAN, go to <code>http://serverip:3000</code> in your browser and you&#8217;re all set</li>
+</ol>
+
+<h2 id="notes">Notes</h2>
+
+<ul>
+<li>Still in early testing - only support switches (On/Off and Dimmer) so far</li>
+<li>Icon support so far includes fans and lightbulbs <em>(with lightbulb being the default)</em></li>
+<li>Eventually will piggyback off the webservers already running for the various backends like Domoticz, HomeAssistant, and OpenHAB instead of running its own server. Just not there yet.</li>
+</ul>
+
+</body>
+</html>
