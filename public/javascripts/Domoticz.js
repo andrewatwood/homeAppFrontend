@@ -1,16 +1,17 @@
 function Domoticz(server){
-    this.server = server;
+    this.server = config.server.indexOf('http') == -1 ? 'http://' + config.server : config.server;
     this.rooms = {};
     this.devices = {};
     this.scenes = {};
     this.inProgress = false;
-    this.updateInterval = 5 //seconds;
+    this.updateInterval = config.update_interval || 30 //seconds;
     this.init();
 }
 
 Domoticz.prototype.init = function(){
     this.getRooms().then(this.getDevices()).then(this.getScenes()).then(function(){
         Vue.nextTick(function(){
+            $(document).click();
             init();
         });
     });

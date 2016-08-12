@@ -4,10 +4,14 @@ html
     base(href="/")
     meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
     meta(name='apple-mobile-web-app-capable', content='yes')
-    
     title Home Mockup
     link(rel='stylesheet', href='/css/main.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
+    if !config.pretty
+      style.
+        .button, .action {
+          -webkit-backdrop-filter: none !important;
+        }
   body#app
     #options.hidden
       .menu-wrapper
@@ -24,5 +28,7 @@ html
           .toggle(v-on:click="toggleDevice(bigDevice.idx)",v-bind:class="{ 'off': !bigDevice.on }")
     #container
       block content
-      script(src='javascripts/min/app-min.js')
+    script.
+      var config = !{JSON.stringify(config)};
+    script(src='javascripts/min/app-min.js')
     //script(src='javascripts/scrollsnap-polyfill.bundled.js')

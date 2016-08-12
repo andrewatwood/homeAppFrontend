@@ -159,8 +159,7 @@ h3 {
   -webkit-scroll-snap-points-x: repeat(230px);
       -ms-scroll-snap-points-x: repeat(230px);
           scroll-snap-points-x: repeat(230px);
-  scroll-snap-padding: 0 0 0 15px;
-  -webkit-overflow-scrolling: touch; }
+  scroll-snap-padding: 0 0 0 15px; }
 
 .scenes {
   width: 800px;

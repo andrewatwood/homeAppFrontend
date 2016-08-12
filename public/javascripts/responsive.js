@@ -16,7 +16,6 @@ function size(){
         } else {
             totalWidth = total/roundDown
         }
-
         var buttonWidth = totalWidth*(105/115);
         var marginWidth = totalWidth*(5/115);
         accessories.width(buttonWidth).css('margin',marginWidth).css('padding-bottom',buttonWidth);

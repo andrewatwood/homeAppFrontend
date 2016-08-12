@@ -31,5 +31,5 @@ block content
               img(v-bind:src='getDeviceIcon(device.idx)')
             .label
               .room {{device.location.name}}
-              .name {{device.name}}
+              .name {{device.name | displayName }}
               .status {{getReadableStatus(device)}}

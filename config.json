@@ -1,0 +1,13 @@
+{
+    "server" : "192.168.0.51:8080",
+    "type" : "domoticz",
+    "update_interval" : 15,
+    "pretty" : false,
+    "display_names" : {
+        "homekit_room_lamp" : "Lamp",
+        "homekit_floor_fan" : "Floor Fan",
+        "Bedroom Ceiling Fan" : "Ceiling Fan",
+        "Living Room Lamps" : "Floor Lamps",
+        "homekit_desk_fan" : "Fan"
+    }
+}

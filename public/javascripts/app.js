@@ -85,3 +85,11 @@ var app = new Vue({
         }
     }
 });
+
+Vue.filter('displayName', function(value){
+    if(config.display_names && (value in config.display_names)){
+        return config.display_names[value];
+    } else {
+        return value;
+    }
+});
