@@ -73,6 +73,7 @@ function bind(){
         if(deviceId == undefined){
             var deviceId = $(this).attr('idx');
         }
+        $(this).addClass('hover');
         touchStart = e.timeStamp;
         longPress = setTimeout(function(){
             console.log('long press blehheheh');
@@ -84,6 +85,7 @@ function bind(){
         if(deviceId == undefined){
             var deviceId = $(this).attr('idx');
         }
+        $(this).removeClass('hover');
         clearTimeout(longPress);
         if(e.timeStamp - touchStart < pressThreshold){
             console.log('click');

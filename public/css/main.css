@@ -193,7 +193,7 @@ h3 {
     color: #595959; }
     .action.inactive .status {
       color: #8c8c8c; }
-    .action.inactive:hover {
+    .action.inactive:hover, .action.inactive.hover {
       background-color: rgba(242, 242, 242, 0.8); }
 
 .accessory {

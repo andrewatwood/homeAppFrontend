@@ -49,7 +49,6 @@ Domoticz.prototype.getRooms = function(){
 }
 
 Domoticz.prototype.getDevices = function(){
-    console.log('Getting devices');
     this.inProgress = true;
     var deferred = $.Deferred();
     var url = this.server + '/json.htm?type=devices&filter=light&used=true&order=Name';
@@ -89,7 +88,6 @@ Domoticz.prototype.getDevices = function(){
                     device.dimmer = true;
                     device.level = result.Level;
                     device.maxLevel = result.MaxDimLevel; 
-                    console.log(device);
                 }
                 device.location = this.rooms[result.PlanID];
                 device.location.id = result.PlanID;
