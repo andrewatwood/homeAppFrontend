@@ -6,12 +6,6 @@ function Domoticz(server){
     this.rooms = {};
     this.devices = {};
     this.scenes = {};
-    this.inProgress = false;
-    this.updateInterval = 5 //seconds;
-    this.init()
-    .then(function(){
-        console.log(this);
-    }.bind(this));
 }
 
 Domoticz.prototype.init = function(){

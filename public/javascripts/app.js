@@ -155,6 +155,7 @@ Domoticz.prototype.getScenes = function(){
                         }
                     }.bind(this));
                     this.scenes[key].rooms = rooms;
+                    this.checkSceneStatus(key);
                 }.bind(this, key)
             );
             gets.push(get);
