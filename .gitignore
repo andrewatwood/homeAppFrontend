@@ -39,3 +39,6 @@ config
 .node_repl_history
 
 .DS_Store
+
+config.codekit*
+.codekit-cache
