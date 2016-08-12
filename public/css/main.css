@@ -411,6 +411,7 @@ h3 {
       left: 0px;
       right: 0px;
       background: rgba(255, 255, 255, 0.5);
+      overflow: hidden;
       border-radius: 40px; }
       #big-control .big-control-wrapper .switch .toggle {
         -webkit-transition: all 0s ease-out;
@@ -424,3 +425,15 @@ h3 {
         border-radius: 35px; }
         #big-control .big-control-wrapper .switch .toggle.off {
           top: 50%; }
+      #big-control .big-control-wrapper .switch .dimmer {
+        -webkit-transition: background-color 0.3s, height 0.1s;
+        transition: background-color 0.3s, height 0.1s;
+        background-color: white;
+        position: absolute;
+        height: 60px;
+        bottom: 0;
+        left: 0;
+        right: 0; }
+        #big-control .big-control-wrapper .switch .dimmer.off {
+          background-color: black;
+          height: 20px; }

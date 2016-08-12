@@ -4,7 +4,9 @@ var app = new Vue({
         server : new Domoticz('http://localhost:8080'),
         showRoomPicker : false,
         currentRoom : 2,
-        bigDevice : {}
+        bigDevice : {
+            empty : true
+        }
     },
     methods: {
         toggleDevice : function(deviceId) {
@@ -39,6 +41,10 @@ var app = new Vue({
         filterScenes : function(scenes, id){
         },
         getReadableStatus : function(device, long){
+            if(device.empty){
+                return '';
+            }
+            var device = this.server.devices[device.idx];
             var status = '';
             if(device.dimmer && device.on){
                 var percent = Math.round(100*device.level/device.maxLevel);
@@ -59,6 +65,25 @@ var app = new Vue({
                 }
             }
             return status;
+        },
+        getDimmerHeight : function(){
+            if(this.bigDevice.empty){
+                return '';
+            }
+            var id = this.bigDevice.idx;
+            if(this.server.devices[id].on){
+                var fraction = this.server.devices[id].level/this.server.devices[id].maxLevel;
+                var totalHeight = $('.switch').height();
+                return (totalHeight - 20) * fraction + 20 + 'px';
+            } else {
+                return '';
+            }
+        },
+        getBigDeviceOn : function(){
+            if(this.bigDevice.empty){
+                return false;
+            }
+            return this.server.devices[this.bigDevice.idx].on;
         },
         getDeviceIcon : function(deviceId){
             if(deviceId === undefined){

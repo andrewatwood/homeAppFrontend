@@ -236,7 +236,16 @@ Domoticz.prototype.sendCommand = function(command, deviceId){
         var cmd = command.on ? 'On' : 'Off';
         var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + this.devices[deviceId].idx + '&switchcmd=' + cmd;
     } else if ('brightness' in command){
-
+        var cmd;
+        if(command.brightness <= 0){
+            cmd = 'Off';
+            this.devices[deviceId].on = false;
+        } else {
+            cmd = 'Set%20Level&level=' + command.brightness;
+            this.devices[deviceId].on = true;
+            this.devices[deviceId].level = command.brightness/100 * this.devices[deviceId].maxLevel;
+        } 
+        var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + this.devices[deviceId].idx + '&switchcmd=' + cmd;
     } else if ('sceneOn' in command){
         var url = this.server + '/json.htm?type=command&param=switchlight&idx=' + deviceId + '&switchcmd=On';
     }

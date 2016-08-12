@@ -24,8 +24,10 @@ html
       .big-control-wrapper
         img(v-bind:src='getDeviceIcon(bigDevice.idx)')
         .status {{getReadableStatus(bigDevice, true)}}
-        .switch
-          .toggle(v-on:click="toggleDevice(bigDevice.idx)",v-bind:class="{ 'off': !bigDevice.on }")
+        .switch#toggle(v-show="!bigDevice.dimmer && !bigDevice.themostat", v-on:click="toggleDevice(bigDevice.idx)")
+          .toggle(v-bind:class="{ 'off': !getBigDeviceOn() }")
+        .switch#dimmer(v-show="bigDevice.dimmer")
+          .dimmer(v-bind:class="{ 'off' : !getBigDeviceOn() }", v-bind:style="{ height : getDimmerHeight()}")
     #container
       block content
     script.

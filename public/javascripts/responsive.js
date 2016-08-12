@@ -87,11 +87,79 @@ function bind(){
             var deviceId = $(this).attr('idx');
         }
         $(this).removeClass('hover');
-        clearTimeout(longPress);
+        if(longPress){
+            clearTimeout(longPress);
+        }
         if(e.timeStamp - touchStart < pressThreshold){
             console.log('click');
             app.toggleDevice(deviceId);
         }
+    }
+
+    var dimmerClick = false;
+
+    function startDimmerTouch(e){
+        startPercent = ($('.dimmer').height() - 20) / ($('#dimmer').height() - 20);
+        startHeight = $('.dimmer').height()
+        startPos = e.pageY;
+        console.log('starting position: %d', startPos);
+        dimmerClick = true;
+        $(document).mouseup(endDimmerTouch);
+        $('#dimmer').mousemove(moveDimmerTouch);
+    }
+
+    function moveDimmerTouch(e){
+        diffY = startPos - e.pageY;
+        if( Math.abs(diffY) > 5 ){
+            dimmerClick = false;
+        }
+        newHeight = startHeight + diffY;
+        if (newHeight <= 30){
+            newHeight = 20;
+            $('.dimmer').addClass('off');
+        } else {
+            $('.dimmer').removeClass('off');
+        }
+        if (newHeight > $('#dimmer').height() ) {
+            newHeight = $('#dimmer').height();
+        }
+        newPercent =  (newHeight - 20) / ($('#dimmer').height() - 20);
+        if(newPercent > 0.95){
+            newPercent = 1;
+            newHeight = $('#dimmer').height();
+        }
+        $('.dimmer').height(newHeight);
+        var newLevel = Math.round(newPercent * app.server.devices[app.bigDevice.idx].maxLevel);
+        if (newLevel == 0){
+            app.server.devices[app.bigDevice.idx].on = false;
+        } else {
+            app.server.devices[app.bigDevice.idx].on = true;
+        }
+        app.server.devices[app.bigDevice.idx].level = newLevel;
+        console.log('moving at %s', newPercent);
+    }
+
+    function endDimmerTouch(e){
+        var device = app.server.devices[app.bigDevice.idx];
+        $('#dimmer').unbind('mousemove');
+        $(document).unbind('mouseup',endDimmerTouch);
+        var command = {};
+        if(dimmerClick){
+            var localY = e.pageY - $('#dimmer').offset().top;
+            var percent = (1 - (localY/($('#dimmer').height() - 20) ));
+            console.log('dimmer click at %s', percent);
+            if(percent > 0.95){
+                percent = 1;
+            }
+            if(percent < 0.05){
+                percent = 0;
+            }
+            command.brightness = Math.round(percent*100);
+        } else {
+            console.log('dimmer slide to %s', newPercent);
+            command.brightness = Math.round(newPercent*100);
+        }
+        app.server.sendCommand(command, app.bigDevice.idx)  
     }
 
     $('.accessory').mousedown(startAccessoryTouch);
@@ -110,9 +178,9 @@ function bind(){
 
     $('.switch').click(function(e){
         e.stopPropagation();
-        console.log('switch click');
-        //$(this).children('.toggle').toggleClass('off');
-    })
+    });
+
+    $('#dimmer').mousedown(startDimmerTouch);
 
     $('#big-control').click(function(){
         console.log('clicked black stuff');
