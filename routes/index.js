@@ -1,15 +1,10 @@
 var express = require('express');
-var unirest = require('unirest');
-var router = express.Router();
+var Domoticz = require('./Domoticz');
 
-var server = 'localhost:8080';
-function getDomoticzState(server){
-  
-}
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+
+
+
+console.log(server);
 
 module.exports = router;
