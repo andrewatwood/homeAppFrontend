@@ -107,7 +107,8 @@ h3 {
   width: auto;
   opacity: 50%;
   padding: 0 17px;
-  line-height: 30px; }
+  line-height: 30px;
+  white-space: normal; }
   .top-controls .button {
     -webkit-backdrop-filter: blur(15px);
     display: inline-block;
