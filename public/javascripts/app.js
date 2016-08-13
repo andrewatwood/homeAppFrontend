@@ -103,6 +103,9 @@ var app = new Vue({
         },
         refreshDevices : function(){
             this.server.getDevices();
+        },
+        dumpServer : function(){
+            console.log(JSON.stringify(this.server));
         }
     }
 });

@@ -13,6 +13,7 @@ Domoticz.prototype.init = function(){
     .then(this.getDevices.bind(this))
     .then(this.getScenes.bind(this))
     .then(function(){
+        console.log('Got %d scenes', Object.keys(this.scenes).length)
         Vue.nextTick(function(){
             init();
             document.getElementById('container').scrollLeft = 1;
@@ -20,7 +21,7 @@ Domoticz.prototype.init = function(){
             app.server.devices[firstDevice] = app.server.devices[firstDevice];
             document.getElementById('container').scrollLeft = 0;
         });
-    });
+    }.bind(this));
     setInterval(function(){ 
         this.getDevices() 
     }.bind(this), this.updateInterval * 1000)
@@ -45,6 +46,10 @@ Domoticz.prototype.getRooms = function(){
                 deferred.reject();
                 return null;
             }
+            if(!data.result){
+                deferred.resolve(null);
+                return null;
+            }
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
                 rooms[result.idx] = {
@@ -55,7 +60,7 @@ Domoticz.prototype.getRooms = function(){
                 }
             }
             this.rooms = rooms;
-            console.log('got rooms');
+            console.log('Got %d rooms', Object.keys(this.rooms).length)
             deferred.resolve();
             return true;
         }.bind(this)
@@ -64,8 +69,6 @@ Domoticz.prototype.getRooms = function(){
 }
 
 Domoticz.prototype.getDevices = function(){
-    console.log('getting devices');
-    console.log(this.rooms);
     var deferred = $.Deferred();
     var url = this.server + '/json.htm?type=devices&filter=all&used=true&order=Name';
     var devices = {};
@@ -74,6 +77,10 @@ Domoticz.prototype.getDevices = function(){
         function(data){
             if(data.status != 'OK'){
                 deferred.reject();
+                return null;
+            }
+            if(!data.result){
+                deferred.resolve(null);
                 return null;
             }
             for( var i = 0; i < data.result.length; i++){
@@ -116,6 +123,7 @@ Domoticz.prototype.getDevices = function(){
             }
             this.devices = devices;
             this.inProgress = false;
+            console.log('Got %d devices', Object.keys(this.devices).length)
             deferred.resolve();
             return true;
         }.bind(this)
@@ -130,8 +138,12 @@ Domoticz.prototype.getScenes = function(){
     $.get(
         url,
         function(data){
-            if(data.status != 'OK'){
+            if(data.status != 'OK' ){
                 deferred.reject();
+                return false;
+            }
+            if(!data.result){
+                deferred.resolve(null);
                 return null;
             }
             for( var i = 0; i < data.result.length; i++){
