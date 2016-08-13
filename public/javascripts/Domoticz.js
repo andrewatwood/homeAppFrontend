@@ -99,17 +99,9 @@ Domoticz.prototype.getDevices = function(){
                             device.level = result.Level;
                             device.maxLevel = result.MaxDimLevel;
                         }
-                        break; 
-                    case 'Thermostat':
-                        device.setPoint = result.SetPoint;
-                        thermostat = true;
                         break;
-                    case 'Temp + Humidity':
-                        device.celsius = result.Data.indexOf('F') == -1;
-                        device.temperature = result.Temp;
-                        console.log(result);
-                        thermostat = true;
-                        break
+                    default:
+                        continue;
                 }
                 device.name = result.Name;
                 device.idx = result.idx;
