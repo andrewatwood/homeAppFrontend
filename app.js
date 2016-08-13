@@ -8,7 +8,7 @@ var unirest = require('unirest');
 var Q = require('q');
 var router = express.Router();
 var Domoticz = require('./Domoticz');
-var config = require('./config');
+var config = require('./config.json');
 
 var app = express();
 
