@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 router.get('/', function(req, res, next) {
-  res.render('index', { config : config});
+  res.render('index', { config : config, pretty : config.pretty});
 });
 
 app.use('/', router);
