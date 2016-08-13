@@ -29,8 +29,8 @@ block content
           .action.accessory(v-for='device in server.devices | filterBy id in "location.id"', v-bind:class="{ 'inactive': !device.on }", idx="{{device.idx}}")
             .icon
               img(v-show='!device.thermostat', v-bind:src='getDeviceIcon(device.idx)')
-              .temperature(v-show='device.thermostat')
+              .temperature(v-show='device.thermostat') 80°
             .label
               .room {{device.location.name}}
               .name {{device.name | displayName }}
-              .status {{getReadableStatus(device)}}
+              .status(v-bind:class="{ 'thermostat' : device.thermostat}") {{getReadableStatus(device)}}

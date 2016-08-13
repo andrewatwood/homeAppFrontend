@@ -45,9 +45,9 @@ var app = new Vue({
             if(device.empty){
                 return '';
             }
-            var device = this.server.devices[device.idx];
+            //var device = this.server.devices[device.idx];
             var status = '';
-            if(device.dimmer && device.on){
+            if('dimmer' in device && device.on){
                 var percent = Math.round(100*device.level/device.maxLevel);
                 console.log('dimmer: %d', percent)
                 if(percent == 0 || percent == 100){
@@ -55,6 +55,8 @@ var app = new Vue({
                 } else {
                     status= percent + "%"
                 }
+            } else if ('setpoint' in device){
+                status = 'Cooling to 80';
             } else {
                 status= device.on ? 'On' : 'Off'
             }

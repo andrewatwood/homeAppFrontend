@@ -75,6 +75,7 @@ Domoticz.prototype.getDevices = function(){
             var roomId = devices[key].room_id;
             console.log(this.rooms);
             devices[key].location = this.rooms[roomId];
+            devices[key].thermostat = true;
             console.log(devices[key]);
         }
     }

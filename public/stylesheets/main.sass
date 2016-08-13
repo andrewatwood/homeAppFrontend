@@ -219,6 +219,8 @@ h3
             margin-top: 50px
         .status
             color: lighten(black, 45%)
+            &.thermostat
+                font-size: 0.85em
     .icon
         position: absolute
         top: 10px
@@ -228,9 +230,17 @@ h3
             margin-left: 10px
         .temperature
             margin-left: 10px
-            height: 26px
-            width: 26px
+            height: 28px
+            width: 28px
+            overflow: hidden
+            color: white
+            font-size: 1em
+            text-align: center
+            line-height: 28px
             border-radius: 50%
+            background-color: #42D551
+            &.cooling
+                background-color: #22A4F2
 .scene
     width: 220px
     height: 60px
