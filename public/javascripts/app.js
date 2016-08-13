@@ -102,7 +102,8 @@ var app = new Vue({
             $('#big-control').removeClass('hidden');
         },
         refreshDevices : function(){
-            this.server.getDevices();
+            this.server.getDevices()
+            .then(this.dumpServer.bind(this));
         },
         dumpServer : function(){
             var server = window.location.href;
