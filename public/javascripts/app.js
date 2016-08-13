@@ -24,7 +24,6 @@ var app = new Vue({
             var width = $('.scroll').width();
             var current = $('#container').scrollLeft();
             var offset = $(room).offset().left;
-            console.log('Target offset: %d current position: %d', offset, current);
             var screens = Math.abs(offset)/width;
             document.getElementById('container').scrollLeft = current+offset;
             //$('#container').animate({scrollLeft : current+offset},125*screens);
@@ -34,22 +33,17 @@ var app = new Vue({
             var roomWidth = $('.room-wrapper').width();
             var scrollPosition = $('#container').scrollLeft() + 10;
             roomIndex = Math.floor(scrollPosition/roomWidth);
-            console.log('Updating current room - index %d', roomIndex);
             this.currentRoom = Object.keys(this.server.rooms)[roomIndex]
             $('#options').toggleClass('hidden')
             //this.showRoomPicker = !this.showRoomPicker;
-        },
-        filterScenes : function(scenes, id){
         },
         getReadableStatus : function(device, long){
             if(device.empty){
                 return '';
             }
-            //var device = this.server.devices[device.idx];
             var status = '';
             if('dimmer' in device && device.on){
                 var percent = Math.round(100*device.level/device.maxLevel);
-                console.log('dimmer: %d', percent)
                 if(percent == 0 || percent == 100){
                     status= device.on ? 'On' : 'Off'
                 } else {
@@ -104,7 +98,6 @@ var app = new Vue({
         showDeviceControl : function(deviceId){
             var device = this.server.devices[deviceId];
             this.bigDevice.on = device.on
-            console.log('set %d to bigDevice', deviceId)
             this.bigDevice = device;
             $('#big-control').removeClass('hidden');
         },
