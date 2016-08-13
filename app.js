@@ -30,6 +30,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { config : config, pretty : config.pretty});
 });
 
+router.post('/errorDump', function(req, res, next){
+  console.log('DUMP FROM BROWSER:');
+  console.dir(req.body);
+  res.status(200).send('OK');
+});
+
 app.use('/', router);
 
 // catch 404 and forward to error handler

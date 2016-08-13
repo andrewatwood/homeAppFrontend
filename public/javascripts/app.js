@@ -105,7 +105,20 @@ var app = new Vue({
             this.server.getDevices();
         },
         dumpServer : function(){
-            console.log(JSON.stringify(this.server));
+            var server = window.location.href;
+            var log = {
+                server : this.server.server,
+                rooms : this.server.rooms,
+                devices : this.server.devices,
+                scenes : this.server.scenes
+            }
+            $.post(
+                server + 'errorDump',
+                log,
+                function( data ){
+                    console.log('Dumped to server log');
+                }
+            )
         }
     }
 });
