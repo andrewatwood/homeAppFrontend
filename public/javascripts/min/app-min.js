@@ -10362,16 +10362,6 @@ Domoticz.prototype.getDevices = function(){
     var deferred = $.Deferred();
     var url = this.server + '/json.htm?type=devices&filter=all&used=true&order=Name';
     var devices = {};
-    if(config.thermostats){
-        for (var key in config.thermostats){
-            devices[key] = config.thermostats[key];
-            var roomId = devices[key].room_id;
-            console.log(this.rooms);
-            devices[key].location = this.rooms[roomId];
-            devices[key].thermostat = true;
-            console.log(devices[key]);
-        }
-    }
     $.get(
         url,
         function(data){
@@ -10412,21 +10402,10 @@ Domoticz.prototype.getDevices = function(){
                 } else {
                     device.on = false;
                 }
-                if(thermostat){
-                    for(var thermostatId in config.thermostats){
-                        var thermostat = config.thermostats[thermostatId];
-                        for (var prop in thermostat){
-                            if (device.idx == thermostat[prop]){
-                                devices[thermostatId][prop] = device;
-                            }
-                        }
-                    }
-                } else {
-                    if(this.rooms[result.PlanID].empty){
-                        this.rooms[result.PlanID].empty = false;
-                    }
-                    devices[device.idx] = device;
+                if(this.rooms[result.PlanID].empty){
+                    this.rooms[result.PlanID].empty = false;
                 }
+                devices[device.idx] = device;
             }
             this.devices = devices;
             this.inProgress = false;
