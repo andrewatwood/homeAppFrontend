@@ -28,6 +28,7 @@ html
           .toggle(v-bind:class="{ 'off': !getBigDeviceOn() }")
         .switch#dimmer(v-show="bigDevice.dimmer || bigDevice.themostat")
           .dimmer(v-bind:class="{ 'off' : !getBigDeviceOn(), 'temperature' : bigDevice.themostat }", v-bind:style="{ height : getDimmerHeight()}")
+            .nub
     #container
       block content
     script.

@@ -377,6 +377,7 @@ h3 {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-bottom: 5%;
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 1;
   -webkit-backdrop-filter: blur(15px);
@@ -438,3 +439,10 @@ h3 {
         #big-control .big-control-wrapper .switch .dimmer.off {
           background-color: black;
           height: 20px; }
+        #big-control .big-control-wrapper .switch .dimmer .nub {
+          width: 25px;
+          margin: 3px auto;
+          display: block;
+          height: 4px;
+          border-radius: 2px;
+          background-color: #bfbfbf; }
