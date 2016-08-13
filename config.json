@@ -1,6 +1,6 @@
 {
     "frontend_port" : "15155",
-    "server" : "192.168.0.51:8080",
+    "server" : "192.168.0.51",
     "type" : "domoticz",
     "update_interval" : 60,
     "pretty" : false,

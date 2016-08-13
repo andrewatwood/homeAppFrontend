@@ -1,5 +1,8 @@
 function Domoticz(server){
     this.server = config.server.indexOf('http') == -1 ? 'http://' + config.server : config.server;
+    if(this.server.split(":").length < 3){
+        this.server += ":8080";
+    }
     this.rooms = {};
     this.devices = {};
     this.scenes = {};
