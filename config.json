@@ -1,5 +1,5 @@
 {
-    "frontend_port" : "151515",
+    "frontend_port" : "15155",
     "server" : "localhost:8080",
     "type" : "domoticz",
     "update_interval" : 60,
