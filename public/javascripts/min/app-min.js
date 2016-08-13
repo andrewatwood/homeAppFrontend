@@ -10413,13 +10413,6 @@ Domoticz.prototype.getDevices = function(){
                 } else {
                     device.icon = 'lightbulb';
                 }
-                if(result.PlanID == "0" && !this.rooms[0]){
-                    console.log('adding Default Room');
-                    
-                }
-                if(this.rooms[result.PlanID].empty){
-                    this.rooms[result.PlanID].empty = false;
-                }
                 device.location = this.rooms[result.PlanID];
                 device.location.id = result.PlanID;
                 if (device.status != 'Off'){
@@ -10437,6 +10430,9 @@ Domoticz.prototype.getDevices = function(){
                         }
                     }
                 } else {
+                    if(this.rooms[result.PlanID].empty){
+                        this.rooms[result.PlanID].empty = false;
+                    }
                     devices[device.idx] = device;
                 }
             }

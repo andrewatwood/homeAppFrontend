@@ -13,7 +13,7 @@
     "thermostats" : {
         "living_room_thermostat" : {
             "name" : "Thermostat",
-            "room_id" : 0,
+            "room_id" : 3,
             "setpoint" : 9,
             "temperature" : 10
         }
