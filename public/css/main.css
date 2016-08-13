@@ -270,6 +270,11 @@ h3 {
       height: 26px;
       width: auto;
       margin-left: 10px; }
+    .accessory .icon .temperature {
+      margin-left: 10px;
+      height: 26px;
+      width: 26px;
+      border-radius: 50%; }
 
 .scene {
   width: 220px;
@@ -428,8 +433,8 @@ h3 {
         #big-control .big-control-wrapper .switch .toggle.off {
           top: 50%; }
       #big-control .big-control-wrapper .switch .dimmer {
-        -webkit-transition: background-color 0.3s, height 0.1s;
-        transition: background-color 0.3s, height 0.1s;
+        -webkit-transition: background-color 0.15s, height 0s;
+        transition: background-color 0.15s, height 0s;
         background-color: white;
         position: absolute;
         height: 60px;

@@ -1,8 +1,7 @@
 function Domoticz(server){
     this.server = config.server.indexOf('http') == -1 ? 'http://' + config.server : config.server;
     this.rooms = {};
-    this.devices = {
-    };
+    this.devices = {};
     this.scenes = {};
     this.inProgress = false;
     this.updateInterval = config.update_interval || 30 //seconds;
@@ -10,7 +9,10 @@ function Domoticz(server){
 }
 
 Domoticz.prototype.init = function(){
-    this.getRooms().then(this.getDevices()).then(this.getScenes()).then(function(){
+    this.getRooms()
+    .then(this.getDevices.bind(this))
+    .then(this.getScenes.bind(this))
+    .then(function(){
         Vue.nextTick(function(){
             init();
             document.getElementById('container').scrollLeft = 1;
@@ -53,6 +55,7 @@ Domoticz.prototype.getRooms = function(){
                 }
             }
             this.rooms = rooms;
+            console.log('got rooms');
             deferred.resolve();
             return true;
         }.bind(this)
@@ -61,10 +64,20 @@ Domoticz.prototype.getRooms = function(){
 }
 
 Domoticz.prototype.getDevices = function(){
-    this.inProgress = true;
+    console.log('getting devices');
+    console.log(this.rooms);
     var deferred = $.Deferred();
     var url = this.server + '/json.htm?type=devices&filter=all&used=true&order=Name';
     var devices = {};
+    if(config.thermostats){
+        for (var key in config.thermostats){
+            devices[key] = config.thermostats[key];
+            var roomId = devices[key].room_id;
+            console.log(this.rooms);
+            devices[key].location = this.rooms[roomId];
+            console.log(devices[key]);
+        }
+    }
     $.get(
         url,
         function(data){
@@ -75,6 +88,7 @@ Domoticz.prototype.getDevices = function(){
             for( var i = 0; i < data.result.length; i++){
                 var result = data.result[i];
                 var device = {};
+                var thermostat = false;
                 switch (result.Type){
                     case 'Scene':
                         continue;
@@ -87,11 +101,13 @@ Domoticz.prototype.getDevices = function(){
                         break; 
                     case 'Thermostat':
                         device.setPoint = result.SetPoint;
+                        thermostat = true;
                         break;
                     case 'Temp + Humidity':
-                        device.celsius = result.Data.indexOf('F') > -1;
+                        device.celsius = result.Data.indexOf('F') == -1;
                         device.temperature = result.Temp;
                         console.log(result);
+                        thermostat = true;
                         break
                 }
                 device.name = result.Name;
@@ -117,7 +133,18 @@ Domoticz.prototype.getDevices = function(){
                 } else {
                     device.on = false;
                 }
-                devices[device.idx] = device;
+                if(thermostat){
+                    for(var thermostatId in config.thermostats){
+                        var thermostat = config.thermostats[thermostatId];
+                        for (var prop in thermostat){
+                            if (device.idx == thermostat[prop]){
+                                devices[thermostatId][prop] = device;
+                            }
+                        }
+                    }
+                } else {
+                    devices[device.idx] = device;
+                }
             }
             this.devices = devices;
             this.inProgress = false;
@@ -163,7 +190,6 @@ Domoticz.prototype.getScenes = function(){
                     if(data.status != 'OK' || !data.result){
                         return null;
                     }
-                    console.log(data);
                     var devices = data.result.map(function(device){
                         return {idx : device.DevRealIdx,
                                 on : device.Command!='Off' ? true : false,

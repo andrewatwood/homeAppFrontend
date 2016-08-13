@@ -12,8 +12,10 @@
     },
     "thermostats" : {
         "living_room_thermostat" : {
-            "setpoint" : 17,
-            "temperature" : 18
+            "name" : "Thermostat",
+            "room_id" : 0,
+            "setpoint" : 9,
+            "temperature" : 10
         }
     }
 }
