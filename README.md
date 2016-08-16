@@ -1,6 +1,8 @@
 # homeAppFrontend
 HTML/CSS replication of iOS 10's Home.app for use as a custom frontend for home automation systems.
 
+**[Watch the latest demo](https://streamable.com/iis1)**
+
 Support planned for Domoticz, OpenHAB, and HomeAssistant, with Domoticz in testing now.
 ## Requirements
 - Node.js
